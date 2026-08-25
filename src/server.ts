@@ -6,9 +6,12 @@ import {
   defineHandlerCallback,
 } from "@tanstack/react-start/server";
 import { createServerEntry } from "@tanstack/react-start/server-entry";
+import { isSsrResponse, replaceSsrResponse } from "@tanstack/router-core/ssr/server";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+
+type SsrHandlerResult = Awaited<ReturnType<typeof defaultStreamHandler>>;
 
 function errorResponse(): Response {
   return new Response(renderErrorPage(), {
@@ -28,9 +31,20 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 // h3 swallows in-handler throws into a normal 500 Response with body
 // {"unhandled":true,"message":"HTTPError"} — try/catch alone never fires for those.
-async function normalizeCatastrophicSsrResponse(response: Response): Promise<Response> {
+//
+// `result` here isn't always a plain Response: handler callbacks in this
+// TanStack Start version may return the SsrResponse wrapper shape
+// (`{ response, serverSsrCleanup, dispose }`) that `defaultStreamHandler`
+// produces for streamed output. Unwrap with `isSsrResponse` before reading
+// `.status`/`.headers`, and swap in the fallback via `replaceSsrResponse` so
+// the original stream is disposed instead of leaking.
+async function normalizeCatastrophicSsrResponse(
+  result: SsrHandlerResult,
+): Promise<SsrHandlerResult> {
   try {
-    if (!response || response.status < 500) return response;
+    const response = isSsrResponse(result) ? result.response : result;
+
+    if (!response || response.status < 500) return result;
 
     // Not a proper Response (no Headers instance) — this is itself the
     // catastrophic case this function exists to handle, just in a shape we
@@ -41,21 +55,21 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
         consumeLastCapturedError() ??
           new Error(`SSR produced a malformed >=500 response with no headers (status ${response.status})`),
       );
-      return errorResponse();
+      return replaceSsrResponse(result, errorResponse());
     }
 
     const contentType = response.headers.get("content-type") ?? "";
-    if (!contentType.includes("application/json")) return response;
+    if (!contentType.includes("application/json")) return result;
 
     const body = await response.clone().text();
-    if (!isH3SwallowedErrorBody(body)) return response;
+    if (!isH3SwallowedErrorBody(body)) return result;
 
     console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
-    return errorResponse();
+    return replaceSsrResponse(result, errorResponse());
   } catch (normalizeError) {
     // Last resort: never let this safety net itself take the request down.
     console.error(consumeLastCapturedError() ?? normalizeError);
-    return errorResponse();
+    return replaceSsrResponse(result, errorResponse());
   }
 }
 
