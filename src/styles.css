@@ -1,0 +1,288 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Glassy Washing Plant — Material 3 inspired design system.
+ * Sky blue tonal palette on crisp white/neutral surfaces.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 16px);
+  --radius-3xl: calc(var(--radius) + 24px);
+  --radius-4xl: calc(var(--radius) + 40px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-outline: var(--outline);
+
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --radius: 16px;
+
+  --background: oklch(0.986 0.007 248);
+  --foreground: oklch(0.237 0.035 246);
+
+  --surface: oklch(0.986 0.007 248);
+  --surface-1: oklch(0.970 0.011 244);
+  --surface-2: oklch(0.953 0.017 242);
+  --surface-3: oklch(0.928 0.026 239);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.237 0.035 246);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.237 0.035 246);
+
+  --primary: oklch(0.536 0.130 244);
+  --primary-foreground: oklch(1 0 0);
+  --primary-container: oklch(0.929 0.033 234);
+  --on-primary-container: oklch(0.333 0.072 240);
+
+  --secondary: oklch(0.951 0.018 238);
+  --secondary-foreground: oklch(0.355 0.065 239);
+
+  --tertiary: oklch(0.410 0.093 242);
+  --tertiary-foreground: oklch(1 0 0);
+
+  --muted: oklch(0.959 0.014 238);
+  --muted-foreground: oklch(0.512 0.049 239);
+
+  --accent: oklch(0.929 0.033 234);
+  --accent-foreground: oklch(0.333 0.072 240);
+
+  --destructive: oklch(0.514 0.176 27);
+  --destructive-foreground: oklch(0.99 0.005 80);
+
+  --border: oklch(0.895 0.033 238);
+  --input: oklch(0.895 0.033 238);
+  --ring: oklch(0.536 0.130 244);
+  --outline: oklch(0.624 0.050 240);
+
+  --inverse-surface: oklch(0.251 0.046 243);
+  --inverse-foreground: oklch(0.962 0.015 242);
+
+  --elev-1: 0 1px 2px oklch(0.28 0.03 244 / 0.08), 0 1px 3px 1px oklch(0.28 0.03 244 / 0.06);
+  --elev-2: 0 1px 2px oklch(0.28 0.03 244 / 0.08), 0 2px 6px 2px oklch(0.28 0.03 244 / 0.07);
+  --elev-3: 0 4px 8px 3px oklch(0.28 0.03 244 / 0.08), 0 1px 3px oklch(0.28 0.03 244 / 0.1);
+}
+
+@theme inline {
+  --shadow-elev-1: var(--elev-1);
+  --shadow-elev-2: var(--elev-2);
+  --shadow-elev-3: var(--elev-3);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  html {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+    scroll-behavior: auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 100svh;
+    margin: 0;
+    overflow-x: clip;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  main > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  box-sizing: border-box;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility m3-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--elev-1);
+  transition:
+    box-shadow 0.4s var(--ease-emphasized),
+    transform 0.4s var(--ease-emphasized),
+    border-color 0.4s var(--ease-emphasized);
+
+  &:hover {
+    box-shadow: var(--elev-3);
+    transform: translateY(-4px);
+    border-color: var(--primary-container);
+  }
+}
+
+@utility perspective-scene {
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+}
+
+@utility state-layer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.25s var(--ease-standard);
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    opacity: 0.08;
+  }
+
+  &:active::after {
+    opacity: 0.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Performance helpers: keep recurring motion on the compositor. */
+.marquee-track {
+  width: max-content;
+  animation: glassy-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+@keyframes glassy-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-100%, 0, 0); }
+}
+
+@keyframes glassy-scroll-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .marquee-track { animation-duration: 46s; }
+
+  /* Prevent transformed/animated children from creating a horizontal page
+     gutter while keeping intentional horizontal carousels scrollable. */
+  main {
+    overflow-x: clip;
+  }
+}
