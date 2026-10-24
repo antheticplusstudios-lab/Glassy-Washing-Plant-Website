@@ -103,7 +103,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Glassy Washing Plant — Garment Washing, Dyeing & Finishing in Dhaka" },
       { name: "twitter:description", content: "Garment washing, dyeing and finishing built for quality at commercial scale." },
-      { name: "twitter:image", content: "/og-image.jpg" },
+      {
+        name: "twitter:image",
+        content: "https://glassy-washing-plant.vercel.app/og-image.jpg?v=2",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

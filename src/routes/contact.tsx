@@ -237,7 +237,7 @@ function Contact() {
                     Thanks — the Glassy team will be in touch shortly. Bring the garment when you
                     visit.
                   </p>
-                  <div className="mt-7 flex justify-center gap-3">
+                  <div className="mt-7 flex flex-wrap justify-center gap-3">
                     <M3Button to="/" variant="outlined">
                       Back to home <ArrowRight size={15} />
                     </M3Button>

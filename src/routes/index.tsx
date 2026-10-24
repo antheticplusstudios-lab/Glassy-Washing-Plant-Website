@@ -44,18 +44,18 @@ function Home() {
     <>
       {/* Hero */}
       <section id="home-hero" ref={heroRef} className="relative scroll-mt-[72px] overflow-hidden">
-        <motion.div style={{ y: imgY }} className="absolute inset-0 -z-10">
+        <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[12%] bottom-0 -z-10">
           <img
-            src="/images/facility-wide.jpg"
-            alt="Operators working across the Glassy washing plant floor"
+            src="/images/v2/facility-wide.jpg"
+            alt="Operators working across the Glassy washing plant floor, with washing machines and garment trolleys"
             className="size-full scale-105 object-cover" decoding="async" fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/92 via-background/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/72 to-background" />
         </motion.div>
 
         <motion.div
           style={{ opacity: fade }}
-          className="container-site flex min-h-[86vh] flex-col justify-center py-24"
+          className="container-site flex min-h-[86svh] flex-col justify-center py-24"
         >
           <motion.p
             initial={{ opacity: 0, x: -30 }}

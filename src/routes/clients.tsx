@@ -48,8 +48,10 @@ function Clients() {
     <>
       <section className="relative overflow-hidden">
         <img
-          src="/images/qc-inspection.jpg"
-          alt="Quality inspection of a washed garment"
+          src="/images/v2/clients-hero.jpg"
+          alt="Finished denim on trolleys in front of the Glassy tumble dryers"
+          decoding="async"
+          fetchPriority="high"
           className="absolute inset-0 -z-10 size-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/90 to-background/40" />
@@ -98,10 +100,11 @@ function Clients() {
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal from="left" tilt>
             <img
-              src="/images/swatches.jpg"
-              alt="Denim shade swatches arranged for quality control"
+              src="/images/v2/swatches.jpg"
+              alt="Washed denim stacked by shade, light to dark, ready for quality control"
               loading="lazy"
-              className="w-full rounded-4xl border border-border object-cover shadow-elev-2"
+              decoding="async"
+              className="aspect-[4/3] w-full rounded-4xl border border-border object-cover shadow-elev-2"
             />
           </Reveal>
           <Reveal from="right">

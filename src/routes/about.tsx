@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Reveal, SplitText, TiltCard, Marquee } from "@/components/motion-primitives";
 import { M3Button } from "@/components/site-shell";
-import { specialties } from "@/lib/site-data";
+import { company, specialties } from "@/lib/site-data";
 import { CtaPanel } from "./index";
 import { seoLinks } from "@/lib/seo";
 
@@ -123,10 +123,11 @@ function About() {
 
         <Reveal from="up" tilt className="mt-16">
           <img
-            src="/images/facility-wide.jpg"
-            alt="Operators working across the Glassy Washing Plant facility floor"
+            src="/images/v2/facility-wide.jpg"
+            alt="Operators working across the Glassy Washing Plant floor, between washing machines and garment trolleys"
             loading="lazy"
-            className="w-full rounded-4xl border border-border object-cover shadow-elev-2"
+            decoding="async"
+            className="aspect-[16/9] w-full rounded-4xl border border-border object-cover shadow-elev-2"
           />
         </Reveal>
       </section>
@@ -163,20 +164,56 @@ function About() {
       <section className="container-site grid gap-4 py-24 md:grid-cols-2">
         <Reveal from="left" tilt>
           <img
-            src="/images/qc-inspection.jpg"
-            alt="Quality inspection of a washed denim garment"
+            src="/images/v2/qc-inspection.jpg"
+            alt="Operator checking a washed denim garment on the quality inspection table"
             loading="lazy"
-            className="h-full w-full rounded-4xl border border-border object-cover shadow-elev-1"
+            decoding="async"
+            className="aspect-[4/3] w-full rounded-4xl border border-border object-cover shadow-elev-1"
           />
         </Reveal>
         <Reveal from="right" tilt>
           <img
-            src="/images/pp-spray.jpg"
-            alt="PP spray dry process being applied by an operator"
+            src="/images/v2/pp-spray.jpg"
+            alt="Team applying PP spray to a pair of jeans in the dry process area"
             loading="lazy"
-            className="h-full w-full rounded-4xl border border-border object-cover shadow-elev-1"
+            decoding="async"
+            className="aspect-[4/3] w-full rounded-4xl border border-border object-cover shadow-elev-1"
           />
         </Reveal>
+      </section>
+
+      {/* Find the plant */}
+      <section className="bg-surface-1 py-24">
+        <div className="container-site grid gap-12 lg:grid-cols-2 lg:items-center">
+          <Reveal from="left" tilt>
+            <img
+              src="/images/v2/plant-gate.jpg"
+              alt="The blue entrance gate and signboard of Glassy Washing Plant in Vatara, Dhaka"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/3] w-full rounded-4xl border border-border object-cover shadow-elev-2"
+            />
+          </Reveal>
+          <Reveal from="right">
+            <p className="eyebrow">Find the plant</p>
+            <h2 className="mt-4 font-display text-[clamp(2rem,4.4vw,3.2rem)] leading-[1] font-extrabold">
+              Look for the
+              <br />
+              blue gate.
+            </h2>
+            <address className="mt-6 text-base leading-relaxed text-muted-foreground not-italic">
+              {company.address}
+            </address>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <M3Button href={company.phoneHref}>
+                Call {company.phone} <ArrowRight size={15} />
+              </M3Button>
+              <M3Button to="/contact" variant="outlined">
+                Send a brief <ArrowRight size={15} />
+              </M3Button>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       <CtaPanel

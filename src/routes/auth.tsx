@@ -123,7 +123,7 @@ function AuthPage() {
         transition={{ duration: 0.45, ease: [0.2, 0, 0, 1] }}
         className="absolute inset-0 -z-10"
       >
-        <img src="/images/swatches.jpg" alt="" className="size-full object-cover" />
+        <img src="/images/v2/swatches.jpg" alt="" className="size-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/88 to-background" />
       </motion.div>
 
