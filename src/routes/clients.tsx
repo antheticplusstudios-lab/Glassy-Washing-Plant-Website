@@ -46,16 +46,17 @@ const promises = [
 function Clients() {
   return (
     <>
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <img
           src="/images/v2/clients-hero.jpg"
           alt="Finished denim on trolleys in front of the Glassy tumble dryers"
           decoding="async"
           fetchPriority="high"
-          className="absolute inset-0 -z-10 size-full object-cover"
+          className="absolute inset-0 z-0 size-full object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/90 to-background/40" />
-        <div className="container-site py-28">
+        <div aria-hidden="true" className="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+        <div aria-hidden="true" className="absolute inset-0 z-0 bg-gradient-to-b from-background/75 via-transparent to-background/95" />
+        <div className="container-site relative z-10 py-28">
           <p className="eyebrow">For the people behind the label</p>
           <SplitText
             as="h1"
