@@ -48,13 +48,19 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
     console.error("Database unavailable for contact submission:", error);
   }
 
-  const { data: contact } = await supabaseAdmin
-    .from("site_content")
-    .select("value")
-    .eq("key", "site.contact")
-    .maybeSingle();
-
-  const settings = (contact?.value ?? {}) as Record<string, string>;
+  // Contact notification settings are optional. If the CMS is offline,
+  // continue with the server-side fallback inbox instead of aborting the form.
+  let settings: Record<string, string> = {};
+  try {
+    const { data: contact } = await supabaseAdmin
+      .from("site_content")
+      .select("value")
+      .eq("key", "site.contact")
+      .maybeSingle();
+    settings = (contact?.value ?? {}) as Record<string, string>;
+  } catch {
+    console.warn("[contact] CMS unavailable; using server-side notification defaults.");
+  }
 
   // Admin brief notifications are controlled server-side so a stale Supabase
   // contact setting cannot silently route the message to the wrong inbox or
