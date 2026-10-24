@@ -51,3 +51,13 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
     return {} as SiteContentMap;
   }
 });
+
+export function pick(
+  content: SiteContentMap | undefined,
+  key: string,
+  field: string,
+  fallback: string,
+): string {
+  const value = content?.[key]?.[field];
+  return value && value.trim() ? value : fallback;
+}
