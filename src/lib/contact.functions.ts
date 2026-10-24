@@ -33,7 +33,7 @@ function guard(data: SubmitPayload) {
 }
 
 export const submitContactBrief = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => submitPayloadSchema.parse(data))
+  .validator((data: unknown) => submitPayloadSchema.parse(data))
   .handler(async ({ data }) => {
     const { storeAndNotifyBrief } = await import("./contact.server");
     return storeAndNotifyBrief(guard(data), null);
@@ -41,7 +41,7 @@ export const submitContactBrief = createServerFn({ method: "POST" })
 
 export const submitContactBriefAsUser = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) => submitPayloadSchema.parse(data))
+  .validator((data: unknown) => submitPayloadSchema.parse(data))
   .handler(async ({ data, context }) => {
     const { storeAndNotifyBrief } = await import("./contact.server");
     return storeAndNotifyBrief(guard(data), context.userId);
@@ -56,7 +56,7 @@ const replySchema = z.object({
 /** Admin-only: log a reply and email it to the person who sent the brief. */
 export const sendSubmissionReply = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) => replySchema.parse(data))
+  .validator((data: unknown) => replySchema.parse(data))
   .handler(async ({ data, context }) => {
     const { data: isAdmin } = await context.supabase.rpc("has_role", {
       _user_id: context.userId,
