@@ -6,7 +6,6 @@ import {
   useScroll,
   useSpring,
   useTransform,
-  type Variants,
 } from "motion/react";
 import { type ReactNode } from "react";
 
@@ -47,7 +46,7 @@ export function Reveal({
       className={className}
       style={use3d ? { transformPerspective: 1200 } : {}}
       initial={{
-        opacity: 0,
+        opacity: 1,
         x: o.x * scale,
         y: o.y * scale,
         rotateX: use3d ? 14 : 0,
@@ -67,67 +66,19 @@ export function Reveal({
   );
 }
 
-const wordVariants: Variants = {
-  hidden: { opacity: 0, y: "0.7em", rotateX: 55 },
-  show: {
-    opacity: 1,
-    y: "0em",
-    rotateX: 0,
-    transition: { duration: 0.75, ease: [0.2, 0, 0, 1] },
-  },
-};
-
-const wordVariantsFlat: Variants = {
-  hidden: { opacity: 0, y: "0.4em" },
-  show: { opacity: 1, y: "0em", transition: { duration: 0.45, ease: [0.2, 0, 0, 1] } },
-};
-
 export function SplitText({
   text,
   className,
   as: Tag = "h2",
-  delay = 0,
 }: {
   text: string;
   className?: string;
   as?: "h1" | "h2" | "h3" | "p";
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
-  const { quality } = useMotionPrefs();
-  const MotionTag = motion[Tag];
-
-  if (reduce || quality === "low") return <Tag className={className}>{text}</Tag>;
-
-  const variants = quality === "high" ? wordVariants : wordVariantsFlat;
-
-  return (
-    <MotionTag
-      className={className}
-      style={quality === "high" ? { perspective: 800 } : undefined}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{
-        staggerChildren: quality === "high" ? 0.055 : 0.03,
-        delayChildren: delay,
-      }}
-      aria-label={text}
-    >
-      {text.split(" ").map((word, i) => (
-        <span
-          key={`${word}-${i}`}
-          className="inline-block overflow-hidden pb-[0.08em] align-bottom"
-          aria-hidden
-        >
-          <motion.span className="inline-block" variants={variants}>
-            {word}
-            {"\u00A0"}
-          </motion.span>
-        </span>
-      ))}
-    </MotionTag>
-  );
+  // Keep headings fully visible in server-rendered HTML. Word-by-word
+  // transforms can leave clipped/hidden text on slow or interrupted hydration.
+  return <Tag className={className}>{text}</Tag>;
 }
 
 export function TiltCard({ children, className }: { children: ReactNode; className?: string }) {
@@ -213,7 +164,7 @@ export function Scroll3D({
   return (
     <div className={className}>
       <motion.div
-        initial={{ opacity: 0, y: 18 * k, rotateX: quality === "high" ? 4 * k : 0, scale: 0.985 }}
+        initial={{ opacity: 1, y: 18 * k, rotateX: quality === "high" ? 4 * k : 0, scale: 0.985 }}
         whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.12, margin: "0px 0px -8% 0px" }}
         transition={{
