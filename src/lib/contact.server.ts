@@ -21,22 +21,31 @@ export type BriefRecord = {
 export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | null) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-  const { data: inserted, error } = await supabaseAdmin
-    .from("contact_submissions")
-    .insert({
-      name: brief.name,
-      email: brief.email,
-      brand: brief.brand,
-      service: brief.service,
-      message: brief.message,
-      user_id: userId,
-    })
-    .select("id")
-    .single();
+  // Keep the contact form usable if the database is temporarily unreachable:
+  // an email notification is a safe fallback, while the response clearly
+  // reports whether the brief was persisted to the database.
+  let inserted: { id: string } | null = null;
+  try {
+    const { data, error } = await supabaseAdmin
+      .from("contact_submissions")
+      .insert({
+        name: brief.name,
+        email: brief.email,
+        brand: brief.brand,
+        service: brief.service,
+        message: brief.message,
+        user_id: userId,
+      })
+      .select("id")
+      .single();
 
-  if (error) {
-    console.error("Insert failed for contact submission:", error);
-    throw new Error("We couldn't save your brief. Please try again in a moment.");
+    if (error) {
+      console.error("Insert failed for contact submission:", error);
+    } else {
+      inserted = data;
+    }
+  } catch (error) {
+    console.error("Database unavailable for contact submission:", error);
   }
 
   const { data: contact } = await supabaseAdmin
@@ -99,14 +108,29 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
     result = await sendEmail({ to: ACCOUNT_OWNER_EMAIL, ...emailPayload });
   }
 
-  await supabaseAdmin
-    .from("contact_submissions")
-    .update({
-      email_delivery: result.sent
-        ? "sent"
-        : `${result.reason}${result.error ? `: ${result.error}` : ""}`.slice(0, 500),
-    })
-    .eq("id", inserted.id);
+  if (inserted) {
+    await supabaseAdmin
+      .from("contact_submissions")
+      .update({
+        email_delivery: result.sent
+          ? "sent"
+          : `${result.reason}${result.error ? `: ${result.error}` : ""}`.slice(0, 500),
+      })
+      .eq("id", inserted.id);
+  }
 
-  return { ok: true as const, id: inserted.id, notified: result.sent };
+  // Never show a false success when both persistence and notification failed.
+  if (!inserted && !result.sent) {
+    console.error("Contact submission could not be stored or emailed.");
+    throw new Error(
+      "We couldn't send your brief right now. Please contact us by phone or WhatsApp instead.",
+    );
+  }
+
+  return {
+    ok: true as const,
+    id: inserted?.id ?? null,
+    notified: result.sent,
+    stored: Boolean(inserted),
+  };
 }
