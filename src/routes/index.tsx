@@ -43,8 +43,8 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section id="home-hero" ref={heroRef} className="relative scroll-mt-[72px] overflow-hidden">
-        <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[12%] bottom-0 -z-10">
+      <section id="home-hero" ref={heroRef} className="relative isolate scroll-mt-[72px] overflow-hidden">
+        <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[12%] bottom-0 z-0">
           <img
             src="/images/v2/facility-wide.jpg"
             alt="Operators working across the Glassy washing plant floor, with washing machines and garment trolleys"
@@ -55,10 +55,10 @@ function Home() {
 
         <motion.div
           style={{ opacity: fade }}
-          className="container-site flex min-h-[86svh] flex-col justify-center py-24"
+          className="container-site relative z-10 flex min-h-[86svh] flex-col justify-center py-24"
         >
           <motion.p
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 1, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}
             className="eyebrow"
@@ -74,7 +74,7 @@ function Home() {
           />
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7, ease: [0.2, 0, 0, 1] }}
             className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground"
@@ -88,7 +88,7 @@ function Home() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 1, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.64, duration: 0.6, ease: [0.2, 0, 0, 1] }}
             className="mt-10 flex flex-wrap gap-3"
