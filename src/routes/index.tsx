@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { M3Button } from "@/components/site-shell";
 import { Marquee, Reveal, Scroll3D, SplitText, TiltCard } from "@/components/motion-primitives";
 import { ServiceCoverflow } from "@/components/service-coverflow";
-import { allServices, floorPhotos, process, specialties, stats } from "@/lib/site-data";
+import { allServices, process, specialties, stats } from "@/lib/site-data";
 import { getSiteContent, pick } from "@/lib/site-content.functions";
 import { seoLinks } from "@/lib/seo";
 
@@ -205,41 +205,6 @@ function Home() {
           <Scroll3D className="mt-14" intensity={0.6}>
             <ServiceCoverflow items={allServices} />
           </Scroll3D>
-        </div>
-      </section>
-
-      {/* Real photos from the floor */}
-      <section className="container-site py-24">
-        <Reveal from="left">
-          <p className="eyebrow">Inside the plant</p>
-          <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold">
-            Real garments. Real machines. Our own floor.
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            No stock photos: these are the people, machines and garments of Glassy Washing Plant in
-            Vatara, Dhaka.
-          </p>
-        </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {floorPhotos.map((photo, i) => (
-            <Reveal key={photo.src} delay={i % 3} from="up">
-              <figure className="m3-card h-full overflow-hidden">
-                <img
-                  src={photo.src}
-                  alt={`${photo.title} at Glassy Washing Plant`}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[4/3] w-full object-cover"
-                />
-                <figcaption className="p-6">
-                  <h3 className="font-display text-lg font-bold">{photo.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {photo.caption}
-                  </p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
         </div>
       </section>
 
