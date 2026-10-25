@@ -261,6 +261,25 @@ export const allServices: ServiceItem[] = [
   ),
 ];
 
+
+/** Wash Library: 14 plant/process photos with captions matched to each subject. */
+export const washLibrary = [
+  { id: "01", title: "Washing", image: "/images/v2/wash-stone.jpg", detail: "Garments are washed in industrial machines to achieve the required finish." },
+  { id: "02", title: "Hydro Extractor", image: "/images/v2/services/critical-wash.jpg", detail: "Hydro extraction removes excess water after washing." },
+  { id: "03", title: "Sample Machine", image: "/images/v2/services/enzyme-wash.jpg", detail: "Small-batch sample washing confirms the finish before bulk production." },
+  { id: "04", title: "Drying Machine", image: "/images/v2/services/silicon-wash.jpg", detail: "Industrial drying prepares washed garments for inspection and finishing." },
+  { id: "05", title: "QC", image: "/images/v2/qc-inspection.jpg", detail: "Quality control checks shade, measurements and garment condition." },
+  { id: "06", title: "Raw Products", image: "/images/v2/facility-wide.jpg", detail: "Incoming garments are organised before processing." },
+  { id: "07", title: "PP Spray Station", image: "/images/v2/pp-spray.jpg", detail: "Controlled hand-applied spray creates targeted fading effects." },
+  { id: "08", title: "Handwork", image: "/images/v2/wash-handwork.jpg", detail: "Skilled operators create abrasion and details by hand." },
+  { id: "09", title: "Stone Wash", image: "/images/v2/services/stone-wash.jpg", detail: "Stone washing creates a naturally worn denim appearance." },
+  { id: "10", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Controlled bleaching lightens garment colour to the approved shade." },
+  { id: "11", title: "Enzyme Bleach", image: "/images/v2/services/enzyme-bleach-wash.jpg", detail: "Enzyme and bleach treatments combine softening with controlled fading." },
+  { id: "12", title: "Grinding", image: "/images/v2/services/grinding.jpg", detail: "Localised abrasion adds character to seams, edges and hems." },
+  { id: "13", title: "Swatches & Lab Dips", image: "/images/v2/swatches.jpg", detail: "Colour swatches and lab dips help approve shades before bulk runs." },
+  { id: "14", title: "Finish Products", image: "/images/v2/services/overdye-wash.jpg", detail: "Finished garments are checked and prepared for handover." },
+] as const;
+
 /** Full process menu from the Glassy company profile. */
 export const processMenu = {
   wet: [
