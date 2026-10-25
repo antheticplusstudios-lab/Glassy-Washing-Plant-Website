@@ -276,7 +276,7 @@ export const washLibrary = [
   { id: "10", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Bleaching lightens garment colour to the approved shade." },
   { id: "11", title: "Enzyme Bleach Wash", image: "/images/v2/services/enzyme-bleach-wash.jpg", detail: "Enzyme and bleach treatments combine surface softening with controlled fading." },
   { id: "12", title: "Grinding", image: "/images/v2/services/grinding.jpg", detail: "Localised abrasion adds a worn effect to selected seams, edges and hems." },
-  { id: "13", title: "Swatches & Lab Dips", image: "/images/v2/swatches.jpg", detail: "Lab dips and swatches are used to review and approve colour before bulk production." },
+  { id: "13", title: "Finish Product", image: "/images/v2/swatches.jpg", detail: "A product sample is reviewed against the approved appearance before bulk production." },
   { id: "14", title: "Finish Products", image: "/images/v2/services/overdye-wash.jpg", detail: "Finished garments are checked against the approved standard before handover." },
 ] as const;
 
