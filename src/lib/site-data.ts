@@ -226,18 +226,18 @@ export const floorPhotos: { src: string; title: string; caption: string }[] = [
   },
   {
     src: "/images/v2/wash-stone.jpg",
-    title: "Stone & abrasion",
-    caption: "Washed denim stacked and sorted by shade after the stone and enzyme cycles.",
+    title: "Garment washing",
+    caption: "Garments are processed in industrial washing equipment to develop the approved wash effect.",
   },
   {
     src: "/images/v2/pp-spray.jpg",
     title: "PP spray station",
-    caption: "Hand-applied potassium permanganate, placed exactly where the reference shows fade.",
+    caption: "The PP spray process creates targeted fading in selected areas of a garment, following the approved reference.",
   },
   {
     src: "/images/v2/wash-handwork.jpg",
-    title: "Hand work",
-    caption: "Scraping, grinding and hand brush done by our own operators, never subcontracted.",
+    title: "Hand finishing",
+    caption: "Hand-finishing techniques create controlled abrasion and detail on selected garment areas.",
   },
   {
     src: "/images/v2/qc-inspection.jpg",
@@ -246,8 +246,8 @@ export const floorPhotos: { src: string; title: string; caption: string }[] = [
   },
   {
     src: "/images/v2/swatches.jpg",
-    title: "Swatches & lab dips",
-    caption: "Colour is proven on a swatch first, so the bulk run repeats the approved shade.",
+    title: "Shade swatches",
+    caption: "Colour samples are used to review and approve the target shade before bulk dyeing.",
   },
 ];
 
