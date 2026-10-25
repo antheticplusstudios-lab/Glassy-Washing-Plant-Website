@@ -135,7 +135,7 @@ function Home() {
               </p>
               <p>
                 Core capabilities include enzyme wash, stone wash, bleach wash, acid wash, pigment
-                wash, overdye, softener and silicon finishing, whiskering, grinding, scrapping, PP
+                wash, overdye, softener and silicon finishing, whiskering, grinding, scraping, PP
                 spray and hand brush work. Send an approved reference or wash standard so the team
                 can assess the right process for your garment.
               </p>
