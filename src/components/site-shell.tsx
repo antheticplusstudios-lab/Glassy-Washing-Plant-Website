@@ -308,7 +308,7 @@ export function Footer() {
       <div className="container-site flex flex-wrap items-center justify-between gap-3 border-t border-border py-6 font-mono text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase">
         <span>© {new Date().getFullYear()} Glassy Washing Plant</span>
         <span>Dhaka · Bangladesh</span>
-        <a href="https://autumic.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">Developed by Autumic</a>
+        <a href="https://autumic.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 font-sans text-xs font-extrabold tracking-[0.04em] text-foreground shadow-[0_0_14px_hsl(var(--primary)/0.16)] transition-all duration-200 hover:border-primary hover:bg-primary/15 hover:text-primary hover:shadow-[0_0_20px_hsl(var(--primary)/0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><span className="text-primary">✦</span><span>Developed by <span className="font-black">Autumic</span></span></a>
       </div>
     </footer>
   );
