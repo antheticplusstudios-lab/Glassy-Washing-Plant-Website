@@ -127,7 +127,7 @@ function Services() {
               Every finish we run, in plain English.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Each photo below was taken on our own floor. Use the notes to pick the finish, then
+              Browse process photos and plain-English notes to understand each stage. Use the notes to pick the finish, then
               send us your reference and we will advise on the right process.
             </p>
           </Reveal>
