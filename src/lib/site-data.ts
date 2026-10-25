@@ -22,10 +22,9 @@ export const legalLinks = [
 ] as const;
 
 export const stats: [string, string][] = [
-  ["11,500", "sq ft under one roof"],
-  ["120+", "skilled operators & technicians"],
-  ["$2.5M+", "last-year volume"],
-  ["650K", "pieces washed every month"],
+  ["10,000+", "sq ft factory"],
+  ["100+", "workers"],
+  ["$7.5M+", "last-year volume"],
 ];
 
 export const washes = [
