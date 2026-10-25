@@ -98,8 +98,8 @@ function service(id: string, title: string, file: string, detail: string): Servi
   return {
     id,
     title,
-    image: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v3/services/${file}.jpg`,
-    photo: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v2/services/${file}.jpg`,
+    image: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v3/services/${file === "scraping" ? "scrapping" : file}.jpg`,
+    photo: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v2/services/${file === "scraping" ? "scrapping" : file}.jpg`,
     detail,
   };
 }
