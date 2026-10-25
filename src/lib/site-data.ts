@@ -143,9 +143,9 @@ export const washLibrary = [
   { id: "09", title: "PP Spray Fading", image: "/images/v2/pp-spray.jpg", detail: "Potassium permanganate spray can create localized fading on selected garment areas. Application and neutralization must follow the approved process and safety controls." },
   { id: "10", title: "Grinding Effects", image: "/images/v2/services/grinding.jpg", detail: "Grinding adds localized abrasion to selected garment areas. Placement and intensity should follow the approved design reference." },
   { id: "11", title: "Hand Brushing & Whisker Effects", image: "/images/v2/services/hand-brush.jpg", detail: "Hand finishing creates placed fading and directional marks. Whisker lines are positioned to match the approved design rather than applied uniformly." },
-  { id: "12", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Finished garments are checked against the approved standard for shade, appearance, construction and measurements before release." },
+  { id: "12", title: "Hydro Extraction", image: "/images/v2/wash-dye.jpg", detail: "Wet garments are loaded into a hydro-extraction machine to remove excess water before industrial drying." },
   { id: "13", title: "Shade Swatches & Colour Approval", image: "/images/v2/swatches.jpg", detail: "Shade swatches provide a visual reference for colour approval. Compare the sample with the buyer's approved standard before releasing the bulk lot." },
-  { id: "14", title: "Hydro Extraction", image: "/images/v2/wash-dye.jpg", detail: "A worker loads wet garments into a hydro-extraction machine to remove excess water before drying. This photo shows a process step, not finished products." },
+  { id: "14", title: "Finish Products", image: "/images/v2/qc-inspection.jpg", detail: "The final garments are reviewed against the approved standard for shade, appearance and measurements before handover." },
 ] as const;
 
 /** Full process menu from the Glassy company profile. */
