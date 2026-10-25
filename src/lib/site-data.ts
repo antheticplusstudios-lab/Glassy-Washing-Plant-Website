@@ -154,12 +154,12 @@ export const allServices: ServiceItem[] = [
   service(
     "05",
     "Drying Machine",
-    "silicon-wash",
+    "drying-unit",
     "Industrial drying removes remaining moisture from washed garments before inspection.",
   ),
   service(
     "06",
-    "MED Stone Wash",
+    "Medium Stone Wash",
     "med-stone-wash",
     "Medium stone abrasion: a balanced fade between the light and dark washes.",
   ),
@@ -207,7 +207,7 @@ export const allServices: ServiceItem[] = [
   ),
   service(
     "14",
-    "Scrapping",
+    "Scraping",
     "scrapping",
     "Hand-scraped abrasion on chosen areas for localised fading and a used feel.",
   ),
@@ -267,7 +267,7 @@ export const washLibrary = [
   { id: "01", title: "Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Garments are washed in industrial machines to achieve the approved shade and finish." },
   { id: "02", title: "Hydro Extractor", image: "/images/v2/services/critical-wash.jpg", detail: "Hydro extraction removes excess water from garments after washing." },
   { id: "03", title: "Sample Machine", image: "/images/v2/services/enzyme-wash.jpg", detail: "Sample washing helps approve the finish before bulk production." },
-  { id: "04", title: "Drying Machine", image: "/images/v2/services/silicon-wash.jpg", detail: "Garments are dried after washing before inspection and finishing." },
+  { id: "04", title: "Drying Machine", image: "/images/v2/services/drying-unit.jpg", detail: "Industrial drying units remove moisture from washed garments before inspection and finishing." },
   { id: "05", title: "QC", image: "/images/v2/qc-inspection.jpg", detail: "Quality control checks garment condition, shade and measurements before handover." },
   { id: "06", title: "Raw Products", image: "/images/v2/services/med-stone-wash.jpg", detail: "Incoming garments are sorted and prepared for processing." },
   { id: "07", title: "PP Spray Station", image: "/images/v2/services/pp-spray.jpg", detail: "Targeted spray application creates controlled fading in selected garment areas." },
@@ -349,6 +349,11 @@ export const floorPhotos: { src: string; title: string; caption: string }[] = [
     title: "The wash floor",
     caption:
       "Washing machines, hydro extractors and garment trolleys on one connected floor in Vatara.",
+  },
+  {
+    src: "/images/v2/services/drying-unit.jpg",
+    title: "Industrial drying units",
+    caption: "Blue industrial drying machines and garment trolleys used to dry washed denim before inspection.",
   },
   {
     src: "/images/v2/wash-stone.jpg",
