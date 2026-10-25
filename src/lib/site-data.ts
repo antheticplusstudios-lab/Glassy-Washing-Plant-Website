@@ -133,16 +133,16 @@ export const allServices: ServiceItem[] = [
 /** Wash Library: process-led descriptions, with finished products presented last. */
 export const washLibrary = [
   { id: "01", title: "Garment Production Floor", image: "/images/v2/facility-wide.jpg", detail: "A view of the factory floor and production equipment used across garment-washing operations." },
-  { id: "02", title: "Sample Testing Unit", image: "/images/v2/services/enzyme-wash.jpg", detail: "Enzyme washing is used to refine the garment surface and hand-feel. The exact effect depends on the fabric and approved wash recipe." },
+  { id: "02", title: "Sample Testing Unit", image: "/images/v2/services/enzyme-wash.jpg", detail: "Garment samples are tested and reviewed against the requested wash effect before the approved process is repeated in bulk." },
   { id: "03", title: "Stone Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Stone washing creates a worn, faded surface, especially on denim. The amount of abrasion is controlled to match the approved reference." },
   { id: "04", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Controlled bleaching lightens garment colour toward the approved shade. Chemistry and processing conditions must suit the fabric and target result." },
   { id: "05", title: "Critical Wash Processing", image: "/images/v2/services/critical-wash.jpg", detail: "A suitable wash recipe is selected for the garment's fabric and construction, with the target finish checked against the approved standard." },
-  { id: "06", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Industrial dryers remove remaining moisture from washed garments before inspection and any further finishing." },
-  { id: "07", title: "Acid Wash", image: "/images/v2/services/deep-dye.jpg", detail: "Dye and tint processes adjust garment colour to the approved shade target. Colour samples are checked before the recipe is repeated at bulk scale." },
+  { id: "06", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Garments are checked for shade, appearance and measurements against the approved quality standard before handover." },
+  { id: "07", title: "Acid Wash", image: "/images/v2/services/deep-dye.jpg", detail: "Acid washing develops a distinctive faded, high-contrast finish. The process should follow the approved recipe for the garment and target appearance." },
   { id: "08", title: "PP Spray Fading", image: "/images/v2/pp-spray.jpg", detail: "Potassium permanganate spray can create localized fading on selected garment areas. Application and neutralization must follow the approved process and safety controls." },
   { id: "09", title: "Hydro Extraction", image: "/images/v2/wash-dye.jpg", detail: "Wet garments are loaded into a hydro-extraction machine to remove excess water before industrial drying." },
-  { id: "10", title: "Final Product", image: "/images/v2/swatches.jpg", detail: "Shade swatches provide a visual reference for colour approval. Compare the sample with the buyer's approved standard before releasing the bulk lot." },
-  { id: "11", title: "Drying Unit", image: "/images/v2/clients-hero.jpg", detail: "The final garments are reviewed against the approved standard for shade, appearance and measurements before handover." },
+  { id: "10", title: "Final Product", image: "/images/v2/swatches.jpg", detail: "Final product approval confirms the garment colour and appearance against the agreed reference before handover." },
+  { id: "11", title: "Drying Unit", image: "/images/v2/clients-hero.jpg", detail: "Industrial drying units remove moisture from washed garments before inspection and further finishing." },
 ] as const;
 
 /** Full process menu from the Glassy company profile. */
