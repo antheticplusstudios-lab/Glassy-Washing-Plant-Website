@@ -308,7 +308,7 @@ export function Footer() {
       <div className="container-site flex flex-wrap items-center justify-between gap-3 border-t border-border py-6 font-mono text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase">
         <span>© {new Date().getFullYear()} Glassy Washing Plant</span>
         <span>Dhaka · Bangladesh</span>
-        <span>Developed by NexGrowth Solutions</span>
+        <span>Developed by Autumic</span>
       </div>
     </footer>
   );
