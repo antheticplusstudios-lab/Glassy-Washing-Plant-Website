@@ -262,21 +262,21 @@ export const allServices: ServiceItem[] = [
 ];
 
 
-/** Wash Library: 14 distinct photo entries, ordered by process and with finished products last. */
+/** Wash Library: 14 separate process photos, ordered with finished products last. */
 export const washLibrary = [
-  { id: "01", title: "Washing", image: "/images/v2/wash-stone.jpg", detail: "Garments are washed in industrial machines according to the approved process and shade." },
-  { id: "02", title: "Hydro Extractor", image: "/images/v2/facility-wide.jpg", detail: "Hydro extraction removes excess water from garments after the wash cycle." },
-  { id: "03", title: "Sample Machine", image: "/images/v2/services/enzyme-wash.jpg", detail: "Sample washing is used to approve the finish before bulk production." },
+  { id: "01", title: "Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Garments are washed in industrial machines to achieve the approved shade and finish." },
+  { id: "02", title: "Hydro Extractor", image: "/images/v2/services/critical-wash.jpg", detail: "Hydro extraction removes excess water from garments after washing." },
+  { id: "03", title: "Sample Machine", image: "/images/v2/services/enzyme-wash.jpg", detail: "Sample washing helps approve the finish before bulk production." },
   { id: "04", title: "Drying Machine", image: "/images/v2/services/silicon-wash.jpg", detail: "Garments are dried after washing before inspection and finishing." },
   { id: "05", title: "QC", image: "/images/v2/qc-inspection.jpg", detail: "Quality control checks garment condition, shade and measurements before handover." },
-  { id: "06", title: "Raw Products", image: "/images/v2/services/critical-wash.jpg", detail: "Incoming garments are organised for processing and batch tracking." },
-  { id: "07", title: "PP Spray Station", image: "/images/v2/pp-spray.jpg", detail: "Targeted spray application creates controlled fading in selected garment areas." },
-  { id: "08", title: "Handwork", image: "/images/v2/wash-handwork.jpg", detail: "Hand finishing adds controlled abrasion and garment details." },
-  { id: "09", title: "Stone Wash", image: "/images/v2/services/stone-wash.jpg", detail: "Stone washing creates a worn denim appearance with controlled abrasion." },
+  { id: "06", title: "Raw Products", image: "/images/v2/services/med-stone-wash.jpg", detail: "Incoming garments are sorted and prepared for processing." },
+  { id: "07", title: "PP Spray Station", image: "/images/v2/services/pp-spray.jpg", detail: "Targeted spray application creates controlled fading in selected garment areas." },
+  { id: "08", title: "Handwork", image: "/images/v2/services/hand-brush.jpg", detail: "Hand finishing adds controlled abrasion and details to selected garment areas." },
+  { id: "09", title: "Stone Wash", image: "/images/v2/services/dark-stone-wash.jpg", detail: "Stone washing creates a worn denim appearance with controlled abrasion." },
   { id: "10", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Bleaching lightens garment colour to the approved shade." },
   { id: "11", title: "Enzyme Bleach Wash", image: "/images/v2/services/enzyme-bleach-wash.jpg", detail: "Enzyme and bleach treatments combine surface softening with controlled fading." },
   { id: "12", title: "Grinding", image: "/images/v2/services/grinding.jpg", detail: "Localised abrasion adds a worn effect to selected seams, edges and hems." },
-  { id: "13", title: "Finish Product", image: "/images/v2/swatches.jpg", detail: "A product sample is reviewed against the approved appearance before bulk production." },
+  { id: "13", title: "Finish Product", image: "/images/v2/services/deep-dye.jpg", detail: "A finished sample is checked against the approved appearance before bulk production." },
   { id: "14", title: "Finish Products", image: "/images/v2/services/overdye-wash.jpg", detail: "Finished garments are checked against the approved standard before handover." },
 ] as const;
 
