@@ -54,7 +54,7 @@ export const washes = [
     title: "Dry process & hand finishing",
     copy: "Operators create localised wear and design details with grinding, scraping, PP spray, whiskering and hand brushing.",
     image: "/images/v2/wash-handwork.jpg",
-    tags: ["Grinding", "Scraping", "PP Spray (Potassium Permanganate)", "All Kinds of Whisker", "Hand Brush"],
+    tags: ["Grinding", "Scraping", "PP Spray (Potassium Permanganate)", "Whisker Effects", "Hand Brush"],
   },
 ];
 
@@ -68,7 +68,7 @@ export const specialties = [
   "Dark Stone Wash",
   "Light Stone Wash",
   "Stone Enzyme Wash",
-  "Over Dying Wash",
+  "Overdye Wash",
   "Pigment Wash",
   "Acid Wash",
   "Grinding",
@@ -77,7 +77,7 @@ export const specialties = [
   "Deep Dye",
   "Tint Wash",
   "Rubber Ball Wash",
-  "All Kinds of Whisker",
+  "Whisker Effects",
   "Hand Brush",
   "Critical & Normal Garments Wash",
   "Custom Wash Standard",
@@ -98,8 +98,8 @@ function service(id: string, title: string, file: string, detail: string): Servi
   return {
     id,
     title,
-    image: `/images/v3/services/${file}.jpg`,
-    photo: `/images/v2/services/${file}.jpg`,
+    image: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v3/services/${file}.jpg`,
+    photo: file === "drying-unit" ? "/images/v2/clients-hero.jpg" : `/images/v2/services/${file}.jpg`,
     detail,
   };
 }
@@ -119,7 +119,7 @@ export const allServices: ServiceItem[] = [
   service("11", "Pigment Wash", "pigment-wash", "Pigment colour is applied and washed back to create a vintage, surface-coloured appearance."),
   service("12", "Acid Wash", "acid-wash", "A high-contrast, cloudy fade creates a distinctive vintage denim effect."),
   service("13", "Grinding", "grinding", "Localised abrasion on seams, hems and edges creates a worn-in effect."),
-  service("14", "Scraping", "scrapping", "Selected garment areas are scraped for controlled, localised fading."),
+  service("14", "Scraping", "scraping", "Selected garment areas are scraped for controlled, localised fading."),
   service("15", "PP Spray (Potassium Permanganate)", "pp-spray", "Targeted PP spray lightens selected garment areas to follow the approved design."),
   service("16", "Deep Dye", "deep-dye", "Dyeing creates a rich, saturated garment colour using an approved shade recipe."),
   service("17", "Tint Wash", "tint-wash", "A light tint shifts the garment shade subtly and evenly during finishing."),
@@ -138,7 +138,7 @@ export const washLibrary = [
   { id: "04", title: "Stone & Enzyme Treatment", image: "/images/v2/services/stone-enzyme-wash.jpg", detail: "Stone abrasion and enzyme treatment are selected according to the target softness and faded appearance." },
   { id: "05", title: "Bleach Treatment", image: "/images/v2/services/bleach-wash.jpg", detail: "Controlled bleaching lightens the garment to the approved shade; the process is selected for the fabric and target result." },
   { id: "06", title: "Hydro Extraction", image: "/images/v2/services/critical-wash.jpg", detail: "After washing, a hydro extractor spins out excess water before the garments move to drying." },
-  { id: "07", title: "Industrial Drying", image: "/images/v2/services/drying-unit.jpg", detail: "The plant's blue industrial drying units dry washed garments before inspection and further finishing." },
+  { id: "07", title: "Industrial Drying", image: "/images/v2/clients-hero.jpg", detail: "The plant's blue industrial drying units dry washed garments before inspection and further finishing." },
   { id: "08", title: "Dye & Tint Effects", image: "/images/v2/services/deep-dye.jpg", detail: "Dyeing or tinting adjusts garment colour to the approved recipe and shade target." },
   { id: "09", title: "PP Spray Effects", image: "/images/v2/pp-spray.jpg", detail: "Targeted spray application creates selected fading effects according to the approved design." },
   { id: "10", title: "Grinding & Scraping", image: "/images/v2/services/grinding.jpg", detail: "Localised abrasion is applied to specified seams, hems and garment panels." },
@@ -219,7 +219,7 @@ export const floorPhotos: { src: string; title: string; caption: string }[] = [
       "Washing machines, hydro extractors and garment trolleys on one connected floor in Vatara.",
   },
   {
-    src: "/images/v2/services/drying-unit.jpg",
+    src: "/images/v2/clients-hero.jpg",
     title: "Industrial drying units",
     caption: "Blue industrial drying machines and garment trolleys used to dry washed denim before inspection.",
   },
