@@ -145,7 +145,7 @@ export const washLibrary = [
   { id: "11", title: "Hand Brushing & Whisker Effects", image: "/images/v2/services/hand-brush.jpg", detail: "Hand finishing creates placed fading and directional marks. Whisker lines are positioned to match the approved design rather than applied uniformly." },
   { id: "12", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Finished garments are checked against the approved standard for shade, appearance, construction and measurements before release." },
   { id: "13", title: "Shade Swatches & Colour Approval", image: "/images/v2/swatches.jpg", detail: "Shade swatches provide a visual reference for colour approval. Compare the sample with the buyer's approved standard before releasing the bulk lot." },
-  { id: "14", title: "Garment Washing & Dyeing", image: "/images/v2/wash-dye.jpg", detail: "Garment washing and dyeing develop the requested colour and surface effect. The result should be compared with the approved shade and appearance reference." },
+  { id: "14", title: "Finish Products", image: "/images/v2/wash-dye.jpg", detail: "Finished garments after washing and dyeing, presented as the final item in the 14-image Wash Library." },
 ] as const;
 
 /** Full process menu from the Glassy company profile. */
