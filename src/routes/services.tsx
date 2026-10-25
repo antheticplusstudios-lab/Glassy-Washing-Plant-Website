@@ -86,39 +86,6 @@ function Services() {
         </Reveal>
       </section>
 
-      <section className="container-site perspective-scene flex flex-col gap-6 pb-20">
-        {washes.map((wash, i) => (
-          <Reveal key={wash.id} delay={i} from={i % 2 ? "right" : "left"} tilt>
-            <article className="m3-card grid gap-0 overflow-hidden md:grid-cols-[0.9fr_1.1fr]">
-              <div className="overflow-hidden">
-                <img
-                  src={wash.image}
-                  alt={`${wash.title} at the Glassy washing plant`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-64 w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0,0,1)] hover:scale-105 md:h-full"
-                />
-              </div>
-              <div className="p-8 md:p-10">
-                <span className="eyebrow">{wash.id}</span>
-                <h2 className="mt-3 font-display text-3xl font-extrabold">{wash.title}</h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{wash.copy}</p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {wash.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-surface-2 px-3 py-1.5 font-mono text-[0.68rem] tracking-wide text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </section>
-
       <section className="bg-surface-1 py-24">
         <div className="container-site">
           <Reveal from="left">
@@ -143,7 +110,7 @@ function Services() {
                     className="aspect-[4/3] w-full object-cover"
                   />
                   <div className="p-6">
-                    <span className="eyebrow">{item.id} / 14</span>
+                    <span className="eyebrow">{item.id} / {washLibrary.length}</span>
                     <h3 className="mt-2 font-display text-lg font-bold">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {item.detail}
