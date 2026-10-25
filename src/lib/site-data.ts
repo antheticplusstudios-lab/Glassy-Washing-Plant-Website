@@ -36,7 +36,7 @@ export const washes = [
     image: "/images/v2/wash-stone.jpg",
     tags: [
       "Stone Wash",
-      "MED Stone Wash",
+      "Medium Stone Wash",
       "Dark Stone Wash",
       "Light Stone Wash",
       "Stone Enzyme Wash",
@@ -62,7 +62,7 @@ export const washes = [
     title: "Colour & overdye",
     copy: "Shade work with lab-dip discipline: build the recipe, prove it on a swatch, repeat it at bulk.",
     image: "/images/v2/swatches.jpg",
-    tags: ["Over Dying Wash", "Pigment Wash", "Deep Dye", "Tint Wash", "As Per Any Wash Standard"],
+    tags: ["Overdye Wash", "Pigment Wash", "Deep Dye", "Tint Wash", "As Per Any Wash Standard"],
   },
   {
     id: "04",
@@ -71,7 +71,7 @@ export const washes = [
     image: "/images/v2/wash-handwork.jpg",
     tags: [
       "Grinding",
-      "Scrapping",
+      "Scraping",
       "PP Spray (Potassium Permanganate)",
       "All Kinds of Whisker",
       "Hand Brush",
@@ -101,7 +101,7 @@ export const specialties = [
   "All Kinds of Whisker",
   "Hand Brush",
   "Critical & Normal Garments Wash",
-  "As Per Any Wash Standard",
+  "Custom Wash Standard",
 ];
 
 export type ServiceItem = {
