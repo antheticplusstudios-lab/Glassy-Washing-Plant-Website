@@ -168,7 +168,7 @@ function Home() {
           text="Built for quality at commercial scale."
           className="mt-4 max-w-2xl font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold"
         />
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map(([value, label], i) => (
             <Reveal key={label} delay={i} from={i % 2 ? "up" : "down"} tilt>
               <TiltCard className="m3-card h-full p-7">
