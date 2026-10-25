@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { type ReactNode } from "react";
 
 import { useMotionPrefs } from "@/lib/motion-prefs";
@@ -14,10 +8,10 @@ import { useMotionPrefs } from "@/lib/motion-prefs";
 type Dir = "up" | "down" | "left" | "right";
 
 const offsets: Record<Dir, { x: number; y: number }> = {
-  up: { x: 0, y: 48 },
-  down: { x: 0, y: -48 },
-  left: { x: -64, y: 0 },
-  right: { x: 64, y: 0 },
+  up: { x: 0, y: 28 },
+  down: { x: 0, y: -28 },
+  left: { x: -32, y: 0 },
+  right: { x: 32, y: 0 },
 };
 
 export function Reveal({
@@ -25,12 +19,12 @@ export function Reveal({
   className,
   delay = 0,
   from = "up",
-  tilt = false,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   from?: Dir;
+  /** Kept for call-site compatibility; entrances no longer tilt or scale. */
   tilt?: boolean;
 }) {
   const reduce = useReducedMotion();
@@ -39,24 +33,16 @@ export function Reveal({
 
   if (reduce || quality === "low") return <div className={className}>{children}</div>;
 
-  const use3d = tilt && quality === "high";
-
+  // Entrances are plain slide-ins: no rotation, perspective or scaling. Those
+  // transforms squeezed text and cards for a moment while a page loaded.
   return (
     <motion.div
       className={className}
-      style={use3d ? { transformPerspective: 1200 } : {}}
-      initial={{
-        opacity: 1,
-        x: o.x * scale,
-        y: o.y * scale,
-        rotateX: use3d ? 14 : 0,
-        rotateY: use3d && o.x !== 0 ? (o.x > 0 ? -10 : 10) : 0,
-        scale: use3d ? 0.96 : 1,
-      }}
-      whileInView={{ opacity: 1, x: 0, y: 0, rotateX: 0, rotateY: 0, scale: 1 }}
+      initial={{ opacity: 1, x: o.x * scale, y: o.y * scale }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: quality === "high" ? 0.8 : 0.5,
+        duration: quality === "high" ? 0.7 : 0.5,
         delay: delay * (quality === "high" ? 0.09 : 0.05),
         ease: [0.2, 0, 0, 1],
       }}
@@ -95,7 +81,11 @@ export function TiltCard({ children, className }: { children: ReactNode; classNa
       // lag behind the pointer instead of tracking it smoothly. Clearing the
       // transform transition here leaves it entirely to Framer's spring,
       // while box-shadow/border-color still animate via the CSS class.
-      style={{ transformPerspective: 1000, transition: "box-shadow 0.4s var(--ease-emphasized), border-color 0.4s var(--ease-emphasized)" }}
+      style={{
+        transformPerspective: 1000,
+        transition:
+          "box-shadow 0.4s var(--ease-emphasized), border-color 0.4s var(--ease-emphasized)",
+      }}
       whileHover={quality === "high" ? { rotateX: -4, rotateY: 4, y: -6 } : { y: -4 }}
       transition={{ type: "spring", stiffness: 220, damping: 18 }}
     >
@@ -122,7 +112,10 @@ export function Marquee({ items }: { items: string[] }) {
   }
 
   return (
-    <div className="relative flex overflow-hidden border-y border-border bg-surface-1 py-4" aria-label="Capabilities">
+    <div
+      className="relative flex overflow-hidden border-y border-border bg-surface-1 py-4"
+      aria-label="Capabilities"
+    >
       <div className="marquee-track flex shrink-0 gap-10 pr-10">
         {items.map((item) => (
           <span key={item} className="eyebrow whitespace-nowrap">
@@ -164,16 +157,12 @@ export function Scroll3D({
   return (
     <div className={className}>
       <motion.div
-        initial={{ opacity: 1, y: 18 * k, rotateX: quality === "high" ? 4 * k : 0, scale: 0.985 }}
-        whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+        initial={{ opacity: 1, y: 16 * k }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.12, margin: "0px 0px -8% 0px" }}
         transition={{
           duration: quality === "high" ? 0.65 : 0.45,
           ease: [0.2, 0, 0, 1],
-        }}
-        style={{
-          transformPerspective: quality === "high" ? 1400 : undefined,
-          willChange: "transform, opacity",
         }}
       >
         {children}

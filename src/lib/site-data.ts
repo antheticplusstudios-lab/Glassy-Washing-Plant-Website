@@ -107,48 +107,278 @@ export const specialties = [
 export type ServiceItem = {
   id: string;
   title: string;
+  /** Homepage carousel artwork. */
   image: string;
+  /** Real photo from the plant floor, used on the Wash Library page. */
+  photo: string;
+  /** One-line plain-English description of the finish. */
+  detail: string;
 };
+
+function service(id: string, title: string, file: string, detail: string): ServiceItem {
+  return {
+    id,
+    title,
+    image: `/images/v3/services/${file}.jpg`,
+    photo: `/images/v2/services/${file}.jpg`,
+    detail,
+  };
+}
 
 /** Every wash / dry-process specialty, one image each — powers the homepage service gallery. */
 export const allServices: ServiceItem[] = [
-  { id: "01", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg" },
-  { id: "02", title: "Enzyme Wash", image: "/images/v2/services/enzyme-wash.jpg" },
-  { id: "03", title: "Stone Wash", image: "/images/v2/services/stone-wash.jpg" },
-  { id: "04", title: "Enzyme Bleach Wash", image: "/images/v2/services/enzyme-bleach-wash.jpg" },
-  { id: "05", title: "Silicon Wash", image: "/images/v2/services/silicon-wash.jpg" },
-  { id: "06", title: "MED Stone Wash", image: "/images/v2/services/med-stone-wash.jpg" },
-  { id: "07", title: "Dark Stone Wash", image: "/images/v2/services/dark-stone-wash.jpg" },
-  { id: "08", title: "Light Stone Wash", image: "/images/v2/services/light-stone-wash.jpg" },
-  { id: "09", title: "Stone Enzyme Wash", image: "/images/v2/services/stone-enzyme-wash.jpg" },
-  { id: "10", title: "Over Dying Wash", image: "/images/v2/services/overdye-wash.jpg" },
-  { id: "11", title: "Pigment Wash", image: "/images/v2/services/pigment-wash.jpg" },
-  { id: "12", title: "Acid Wash", image: "/images/v2/services/acid-wash.jpg" },
-  { id: "13", title: "Grinding", image: "/images/v2/services/grinding.jpg" },
-  { id: "14", title: "Scrapping", image: "/images/v2/services/scrapping.jpg" },
+  service(
+    "01",
+    "Bleach Wash",
+    "bleach-wash",
+    "Controlled oxidative fading that lifts colour evenly for a clean, lighter shade.",
+  ),
+  service(
+    "02",
+    "Enzyme Wash",
+    "enzyme-wash",
+    "Bio-polishing with enzymes for a soft hand-feel and a smooth, lightly worn surface.",
+  ),
+  service(
+    "03",
+    "Stone Wash",
+    "stone-wash",
+    "Pumice stones tumbled with the garment for classic abrasion and visible contrast.",
+  ),
+  service(
+    "04",
+    "Enzyme Bleach Wash",
+    "enzyme-bleach-wash",
+    "Enzyme softening combined with bleach for a soft surface and a clean shade drop.",
+  ),
+  service(
+    "05",
+    "Silicon Wash",
+    "silicon-wash",
+    "A silicone finish after the wash for a silky, smooth hand-feel and a softer drape.",
+  ),
+  service(
+    "06",
+    "MED Stone Wash",
+    "med-stone-wash",
+    "Medium stone abrasion: a balanced fade between the light and dark washes.",
+  ),
+  service(
+    "07",
+    "Dark Stone Wash",
+    "dark-stone-wash",
+    "Gentle abrasion that keeps the deep indigo while softening the fabric.",
+  ),
+  service(
+    "08",
+    "Light Stone Wash",
+    "light-stone-wash",
+    "Stronger stone and fade treatment for a bright, washed-down look.",
+  ),
+  service(
+    "09",
+    "Stone Enzyme Wash",
+    "stone-enzyme-wash",
+    "Stones plus enzymes: textured abrasion with a soft, polished surface.",
+  ),
+  service(
+    "10",
+    "Over Dying Wash",
+    "overdye-wash",
+    "A second dye applied over the wash to shift or deepen the shade.",
+  ),
+  service(
+    "11",
+    "Pigment Wash",
+    "pigment-wash",
+    "Pigment colour applied then washed back for a vintage, faded tone.",
+  ),
+  service(
+    "12",
+    "Acid Wash",
+    "acid-wash",
+    "Marbled, high-contrast fade with a frosted, vintage character.",
+  ),
+  service(
+    "13",
+    "Grinding",
+    "grinding",
+    "Hand-guided abrasion on seams, edges and hems for a worn-in look.",
+  ),
+  service(
+    "14",
+    "Scrapping",
+    "scrapping",
+    "Hand-scraped abrasion on chosen areas for localised fading and a used feel.",
+  ),
+  service(
+    "15",
+    "PP Spray (Potassium Permanganate)",
+    "pp-spray",
+    "Potassium permanganate sprayed by hand to bleach selected areas, so fade lands where you want it.",
+  ),
+  service(
+    "16",
+    "Deep Dye",
+    "deep-dye",
+    "Rich, saturated colour built by dyeing, with the recipe proven on a swatch before bulk.",
+  ),
+  service(
+    "17",
+    "Tint Wash",
+    "tint-wash",
+    "A light colour tint added in the wash for a subtle, even shade shift.",
+  ),
+  service(
+    "18",
+    "Rubber Ball Wash",
+    "rubber-ball-wash",
+    "Rubber balls in the tumble add softness and a lightly textured, worn surface.",
+  ),
+  service(
+    "19",
+    "All Kinds of Whisker",
+    "whisker",
+    "Hand-placed whisker lines at the hip and thigh, made to match your reference.",
+  ),
+  service(
+    "20",
+    "Hand Brush",
+    "hand-brush",
+    "Hand-brushed abrasion for natural-looking fade placement you can direct.",
+  ),
+  service(
+    "21",
+    "Critical & Normal Garments Wash",
+    "critical-wash",
+    "Careful handling for delicate or complex garments, as well as everyday styles.",
+  ),
+  service(
+    "22",
+    "As Per Any Wash Standard",
+    "wash-standard",
+    "Send the approved standard: we match shade, contrast and hand-feel, then document the recipe.",
+  ),
+];
+
+/** Full process menu from the Glassy company profile. */
+export const processMenu = {
+  wet: [
+    "Garments Wash",
+    "Enzyme Wash",
+    "Enzyme Stone Wash",
+    "Bleach Wash",
+    "Acid Wash",
+    "Silicon Wash",
+    "Towel Bleach",
+    "Pigment Dyeing",
+    "Reactive Dyeing",
+    "Fluorescent Dyeing",
+    "Sulfur Dyeing",
+    "Dip Dyeing",
+    "Cool Dyeing",
+    "Tie Dyeing",
+  ],
+  dry: [
+    "3D Crinkle Effects",
+    "Destroy / Damaging",
+    "Mending with Stitching",
+    "Hand Brush",
+    "Scraping",
+    "Tagging",
+    "Whisker",
+    "PP Spray",
+    "Wrinkle",
+  ],
+};
+
+/** Machinery list from the Glassy company profile. */
+export const machinery: [string, string][] = [
+  ["Washing machines", "7"],
+  ["Sample washing machines", "3"],
+  ["Hydro machines", "2"],
+  ["Sample hydro machine", "1"],
+  ["Gas dryer machines", "5"],
+  ["Dip dyeing machine", "1"],
+  ["Lab machine", "1"],
+  ["Tag machines", "2"],
+  ["Stapler machines", "2"],
+  ["3D crinkle machine", "1"],
+  ["Hand brushes", "36"],
+];
+
+/** Utilities and support facilities from the Glassy company profile. */
+export const facility: [string, string][] = [
+  ["Boiler", "1 ton"],
+  ["Compressor", "22 HP"],
+  ["Water", "2 submersible pumps"],
+  ["Laboratory room", "Modern and fully equipped"],
+  ["Chemicals", "From an OEKO-TEX and Green certified supplier"],
+  ["Carrying arrangement", "4 covered vans"],
+  ["Location", "House 13, Wazuddin Rd, Vatara, Dhaka 1212"],
+];
+
+export const mission =
+  "To deliver on our promises by ensuring quality and keeping trusted relationships with our clients, vendors and employees, by adopting best practices.";
+
+export const vision =
+  "To be an industry leader by leaving an exemplary footprint through quality service, with ethical and sustainable practice in the local and international market.";
+
+export const floorPhotos: { src: string; title: string; caption: string }[] = [
   {
-    id: "15",
-    title: "PP Spray (Potassium Permanganate)",
-    image: "/images/v2/services/pp-spray.jpg",
+    src: "/images/v2/facility-wide.jpg",
+    title: "The wash floor",
+    caption:
+      "Washing machines, hydro extractors and garment trolleys on one connected floor in Vatara.",
   },
-  { id: "16", title: "Deep Dye", image: "/images/v2/services/deep-dye.jpg" },
-  { id: "17", title: "Tint Wash", image: "/images/v2/services/tint-wash.jpg" },
-  { id: "18", title: "Rubber Ball Wash", image: "/images/v2/services/rubber-ball-wash.jpg" },
-  { id: "19", title: "All Kinds of Whisker", image: "/images/v2/services/whisker.jpg" },
-  { id: "20", title: "Hand Brush", image: "/images/v2/services/hand-brush.jpg" },
   {
-    id: "21",
-    title: "Critical & Normal Garments Wash",
-    image: "/images/v2/services/critical-wash.jpg",
+    src: "/images/v2/wash-stone.jpg",
+    title: "Stone & abrasion",
+    caption: "Washed denim stacked and sorted by shade after the stone and enzyme cycles.",
   },
-  { id: "22", title: "As Per Any Wash Standard", image: "/images/v2/services/wash-standard.jpg" },
+  {
+    src: "/images/v2/pp-spray.jpg",
+    title: "PP spray station",
+    caption: "Hand-applied potassium permanganate, placed exactly where the reference shows fade.",
+  },
+  {
+    src: "/images/v2/wash-handwork.jpg",
+    title: "Hand work",
+    caption: "Scraping, grinding and hand brush done by our own operators, never subcontracted.",
+  },
+  {
+    src: "/images/v2/qc-inspection.jpg",
+    title: "Quality inspection",
+    caption: "Each batch is checked for shade, hand-feel and measurements before handover.",
+  },
+  {
+    src: "/images/v2/swatches.jpg",
+    title: "Swatches & lab dips",
+    caption: "Colour is proven on a swatch first, so the bulk run repeats the approved shade.",
+  },
 ];
 
 export const process: [string, string, string][] = [
-  ["01", "Brief & swatch", "Send the reference — a photo, a competitor garment, or just a feeling."],
-  ["02", "Lab dip & sample", "Approve a physical sample with the exact shade, hand-feel and placement."],
-  ["03", "Bulk production", "Recipe cards lock chemistry, load, time and temperature for every repeat."],
-  ["04", "QC & handover", "Shade banding, hand-feel and measurement checks before an export-ready handover."],
+  [
+    "01",
+    "Brief & swatch",
+    "Send the reference — a photo, a competitor garment, or just a feeling.",
+  ],
+  [
+    "02",
+    "Lab dip & sample",
+    "Approve a physical sample with the exact shade, hand-feel and placement.",
+  ],
+  [
+    "03",
+    "Bulk production",
+    "Recipe cards lock chemistry, load, time and temperature for every repeat.",
+  ],
+  [
+    "04",
+    "QC & handover",
+    "Shade banding, hand-feel and measurement checks before an export-ready handover.",
+  ],
 ];
 
 export const faqs: [string, string][] = [

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { M3Button } from "@/components/site-shell";
 import { Reveal, SplitText } from "@/components/motion-primitives";
-import { washes } from "@/lib/site-data";
+import { allServices, processMenu, washes } from "@/lib/site-data";
 import { CtaPanel } from "./index";
 import { ArrowRight } from "lucide-react";
 import { seoLinks } from "@/lib/seo";
@@ -18,7 +18,8 @@ export const Route = createFileRoute("/services")({
       { property: "og:title", content: "Garment Washing Services in Bangladesh | Glassy" },
       {
         property: "og:description",
-        content: "Garment washing, denim washing, dyeing and finishing processes developed and run on the Glassy production floor in Dhaka."
+        content:
+          "Garment washing, denim washing, dyeing and finishing processes developed and run on the Glassy production floor in Dhaka.",
       },
     ],
     links: seoLinks("/services"),
@@ -116,6 +117,77 @@ function Services() {
             </article>
           </Reveal>
         ))}
+      </section>
+
+      <section className="bg-surface-1 py-24">
+        <div className="container-site">
+          <Reveal from="left">
+            <p className="eyebrow">The wash library</p>
+            <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold">
+              Every finish we run, in plain English.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Each photo below was taken on our own floor. Use the notes to pick the finish, then
+              send us your reference and we will advise on the right process.
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {allServices.map((item, i) => (
+              <Reveal key={item.id} delay={i % 3} from="up">
+                <article className="m3-card h-full overflow-hidden">
+                  <img
+                    src={item.photo}
+                    alt={`${item.title}: ${item.detail}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                  <div className="p-6">
+                    <span className="eyebrow">{item.id} / 22</span>
+                    <h3 className="mt-2 font-display text-lg font-bold">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.detail}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container-site py-24">
+        <Reveal from="left">
+          <p className="eyebrow">Full process menu</p>
+          <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold">
+            Wet processing and dry processing under one roof.
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {(
+            [
+              ["Wet processing", processMenu.wet],
+              ["Dry processing", processMenu.dry],
+            ] as const
+          ).map(([heading, items], i) => (
+            <Reveal key={heading} delay={i} from={i ? "right" : "left"}>
+              <div className="m3-card h-full p-8">
+                <h3 className="font-display text-2xl font-extrabold">{heading}</h3>
+                <ul className="mt-6 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                  {items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span
+                        aria-hidden
+                        className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <section className="bg-surface-1 py-24 text-center">

@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { M3Button } from "@/components/site-shell";
 import { Marquee, Reveal, Scroll3D, SplitText, TiltCard } from "@/components/motion-primitives";
 import { ServiceCoverflow } from "@/components/service-coverflow";
-import { allServices, process, specialties, stats } from "@/lib/site-data";
+import { allServices, floorPhotos, process, specialties, stats } from "@/lib/site-data";
 import { getSiteContent, pick } from "@/lib/site-content.functions";
 import { seoLinks } from "@/lib/seo";
 
@@ -18,10 +18,14 @@ export const Route = createFileRoute("/")({
         content:
           "Garment washing plant in Bangladesh serving Dhaka and apparel manufacturers with garment washing, denim washing, dyeing and finishing services.",
       },
-      { property: "og:title", content: "Garment Washing Plant in Bangladesh | Glassy Washing Plant" },
+      {
+        property: "og:title",
+        content: "Garment Washing Plant in Bangladesh | Glassy Washing Plant",
+      },
       {
         property: "og:description",
-        content: "Garment washing, denim washing, dyeing and finishing services in Dhaka, Bangladesh for apparel brands and manufacturers.",
+        content:
+          "Garment washing, denim washing, dyeing and finishing services in Dhaka, Bangladesh for apparel brands and manufacturers.",
       },
     ],
     links: seoLinks("/"),
@@ -43,12 +47,18 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section id="home-hero" ref={heroRef} className="relative isolate scroll-mt-[72px] overflow-hidden">
+      <section
+        id="home-hero"
+        ref={heroRef}
+        className="relative isolate scroll-mt-[72px] overflow-hidden"
+      >
         <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[12%] bottom-0 z-0">
           <img
             src="/images/v2/facility-wide.jpg"
             alt="Operators working across the Glassy washing plant floor, with washing machines and garment trolleys"
-            className="size-full scale-105 object-cover" decoding="async" fetchPriority="high"
+            className="size-full scale-105 object-cover"
+            decoding="async"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/72 to-background" />
         </motion.div>
@@ -118,15 +128,16 @@ function Home() {
           <Reveal from="right">
             <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                Glassy Washing Plant provides garment washing services in Bangladesh, with a production
-                floor in Vatara, Dhaka. Our work covers denim and apparel washing, garment dyeing,
-                dry-process effects and finishing for brands, manufacturers and sourcing teams.
+                Glassy Washing Plant provides garment washing services in Bangladesh, with a
+                production floor in Vatara, Dhaka. Our work covers denim and apparel washing,
+                garment dyeing, dry-process effects and finishing for brands, manufacturers and
+                sourcing teams.
               </p>
               <p>
                 Core capabilities include enzyme wash, stone wash, bleach wash, acid wash, pigment
-                wash, overdye, softener and silicon finishing, whiskering, grinding, scrapping,
-                PP spray and hand brush work. Send an approved reference or wash standard so the
-                team can assess the right process for your garment.
+                wash, overdye, softener and silicon finishing, whiskering, grinding, scrapping, PP
+                spray and hand brush work. Send an approved reference or wash standard so the team
+                can assess the right process for your garment.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {[
@@ -137,7 +148,10 @@ function Home() {
                   "Garment finishing services Bangladesh",
                   "Garment wet processing Bangladesh",
                 ].map((keyword) => (
-                  <span key={keyword} className="rounded-full bg-surface-2 px-3 py-1.5 font-mono text-[0.68rem] tracking-wide text-muted-foreground">
+                  <span
+                    key={keyword}
+                    className="rounded-full bg-surface-2 px-3 py-1.5 font-mono text-[0.68rem] tracking-wide text-muted-foreground"
+                  >
                     {keyword}
                   </span>
                 ))}
@@ -194,6 +208,41 @@ function Home() {
         </div>
       </section>
 
+      {/* Real photos from the floor */}
+      <section className="container-site py-24">
+        <Reveal from="left">
+          <p className="eyebrow">Inside the plant</p>
+          <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold">
+            Real garments. Real machines. Our own floor.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            No stock photos: these are the people, machines and garments of Glassy Washing Plant in
+            Vatara, Dhaka.
+          </p>
+        </Reveal>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {floorPhotos.map((photo, i) => (
+            <Reveal key={photo.src} delay={i % 3} from="up">
+              <figure className="m3-card h-full overflow-hidden">
+                <img
+                  src={photo.src}
+                  alt={`${photo.title} at Glassy Washing Plant`}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+                <figcaption className="p-6">
+                  <h3 className="font-display text-lg font-bold">{photo.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {photo.caption}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* Statement */}
       <section className="container-site py-28 text-center">
         <p className="eyebrow">
@@ -219,17 +268,17 @@ function Home() {
             className="mt-4 font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1] font-extrabold"
           />
           <Scroll3D className="mt-14" intensity={0.9}>
-          <div className="perspective-scene grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map(([step, title, copy], i) => (
-              <Reveal key={step} delay={i} from="up" tilt>
-                <div className="m3-card h-full p-7">
-                  <span className="font-mono text-xs tracking-widest text-primary">{step}</span>
-                  <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{copy}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+            <div className="perspective-scene grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {process.map(([step, title, copy], i) => (
+                <Reveal key={step} delay={i} from="up" tilt>
+                  <div className="m3-card h-full p-7">
+                    <span className="font-mono text-xs tracking-widest text-primary">{step}</span>
+                    <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </Scroll3D>
         </div>
       </section>
