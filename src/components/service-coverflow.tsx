@@ -84,12 +84,12 @@ export function ServiceCoverflow({
     [active, lock],
   );
 
-  // Autoplay — paused on hover/focus/drag/hidden tab, and skipped entirely
-  // for reduced motion or low-power mode.
+  // Autoplay — paused on hover/focus/drag/hidden tab. Keep the original
+  // self-moving gallery on mobile/low-power devices too; reduced-motion is respected.
   const [playing, setPlaying] = useState(true);
   const [paused, setPaused] = useState(false);
   useEffect(() => {
-    if (reduce || quality === "low" || !playing || paused || n < 2) return;
+    if (reduce || !playing || paused || n < 2) return;
     const id = window.setInterval(() => step(1), AUTOPLAY_MS);
     return () => window.clearInterval(id);
   }, [reduce, quality, playing, paused, n, step]);
@@ -112,9 +112,9 @@ export function ServiceCoverflow({
 
   const current = items[active] ?? items[0];
 
-  // Reduced-motion / low-power fallback: a plain, cheap, native scroll-snap
-  // strip. Still one section, still every service, still titled bottom-left.
-  if (reduce || quality === "low") {
+  // Reduced-motion fallback only. Low-power devices keep the same animated
+  // coverflow and autoplay as the original gallery; no images or card order change.
+  if (reduce) {
     return (
       <div className={cn("relative", className)}>
         <div className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -153,8 +153,9 @@ export function ServiceCoverflow({
   const cardWidth = Math.max(220, Math.min(narrow ? availableWidth * 0.8 : availableWidth * 0.5, 620));
   const cardHeight = cardWidth * 0.75;
   const spacing = cardWidth * (narrow ? 0.56 : 0.62);
-  const tiltDeg = 8 * scale;
-  const sideTiltDeg = 6 * scale;
+  const galleryScale = scale || 1;
+  const tiltDeg = 8 * galleryScale;
+  const sideTiltDeg = 6 * galleryScale;
 
   return (
     <div className={cn("relative", className)}>
@@ -197,7 +198,7 @@ export function ServiceCoverflow({
             const isActive = rel === 0;
             const sc = Math.max(0.42, 1 - ax * SCALE_STEP);
             const tx = rel * spacing;
-            const tz = -ax * DEPTH * scale;
+            const tz = -ax * DEPTH * galleryScale;
             const ry = -rel * tiltDeg;
             const rz = rel * sideTiltDeg;
 
