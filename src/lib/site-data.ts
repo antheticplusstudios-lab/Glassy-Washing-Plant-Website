@@ -137,7 +137,7 @@ export const washLibrary = [
   { id: "03", title: "Industrial Garment Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Garments are processed in industrial washing equipment using a recipe matched to the fabric, construction and approved finish." },
   { id: "04", title: "Stone & Enzyme Wash", image: "/images/v2/services/stone-enzyme-wash.jpg", detail: "Stone abrasion and enzyme action can be combined to create a worn surface with a softer hand-feel. The balance depends on the approved reference." },
   { id: "05", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Controlled bleaching lightens garment colour toward the approved shade. Chemistry and processing conditions must suit the fabric and target result." },
-  { id: "06", title: "Post-Wash Water Extraction", image: "/images/v2/services/critical-wash.jpg", detail: "After wet processing, excess water is removed from garments before they move to the drying stage." },
+  { id: "06", title: "Critical Garment Washing", image: "/images/v2/services/critical-wash.jpg", detail: "Garments are processed with a wash recipe suited to their fabric, construction and care requirements. The approved standard guides the final shade and finish." },
   { id: "07", title: "Industrial Drying", image: "/images/v2/clients-hero.jpg", detail: "Industrial dryers remove remaining moisture from washed garments before inspection and any further finishing." },
   { id: "08", title: "Dyeing & Tinting", image: "/images/v2/services/deep-dye.jpg", detail: "Dye and tint processes adjust garment colour to the approved shade target. Colour samples are checked before the recipe is repeated at bulk scale." },
   { id: "09", title: "PP Spray Fading", image: "/images/v2/pp-spray.jpg", detail: "Potassium permanganate spray can create localized fading on selected garment areas. Application and neutralization must follow the approved process and safety controls." },
@@ -145,7 +145,7 @@ export const washLibrary = [
   { id: "11", title: "Hand Brushing & Whisker Effects", image: "/images/v2/services/hand-brush.jpg", detail: "Hand finishing creates placed fading and directional marks. Whisker lines are positioned to match the approved design rather than applied uniformly." },
   { id: "12", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Finished garments are checked against the approved standard for shade, appearance, construction and measurements before release." },
   { id: "13", title: "Shade Swatches & Colour Approval", image: "/images/v2/swatches.jpg", detail: "Shade swatches provide a visual reference for colour approval. Compare the sample with the buyer's approved standard before releasing the bulk lot." },
-  { id: "14", title: "Finished Products", image: "/images/v2/wash-dye.jpg", detail: "Completed garments are checked against the approved shade and appearance standard before the finished lot is released for handover." },
+  { id: "14", title: "Garment Washing & Dyeing", image: "/images/v2/wash-dye.jpg", detail: "Garment washing and dyeing develop the requested colour and surface effect. The result should be compared with the approved shade and appearance reference." },
 ] as const;
 
 /** Full process menu from the Glassy company profile. */
