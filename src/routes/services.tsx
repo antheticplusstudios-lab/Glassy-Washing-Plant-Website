@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { M3Button } from "@/components/site-shell";
 import { Reveal, SplitText } from "@/components/motion-primitives";
-import { allServices, processMenu, washes } from "@/lib/site-data";
+import { processMenu, washes, washLibrary } from "@/lib/site-data";
 import { CtaPanel } from "./index";
 import { ArrowRight } from "lucide-react";
 import { seoLinks } from "@/lib/seo";
@@ -132,18 +132,18 @@ function Services() {
             </p>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {allServices.map((item, i) => (
+            {washLibrary.map((item, i) => (
               <Reveal key={item.id} delay={i % 3} from="up">
                 <article className="m3-card h-full overflow-hidden">
                   <img
-                    src={item.photo}
+                    src={item.image}
                     alt={`${item.title}: ${item.detail}`}
                     loading="lazy"
                     decoding="async"
                     className="aspect-[4/3] w-full object-cover"
                   />
                   <div className="p-6">
-                    <span className="eyebrow">{item.id} / 22</span>
+                    <span className="eyebrow">{item.id} / 14</span>
                     <h3 className="mt-2 font-display text-lg font-bold">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {item.detail}
