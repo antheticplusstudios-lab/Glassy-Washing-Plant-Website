@@ -132,20 +132,20 @@ export const allServices: ServiceItem[] = [
 
 /** Wash Library: process-led descriptions, with finished products presented last. */
 export const washLibrary = [
-  { id: "01", title: "Garments on the Wash Floor", image: "/images/v2/facility-wide.jpg", detail: "Garment lots are staged on the production floor before processing. Sorting and checks should be completed before a wash recipe is started." },
-  { id: "02", title: "Enzyme Wash Development", image: "/images/v2/services/enzyme-wash.jpg", detail: "Enzyme treatment is used to soften the fabric surface and refine the garment's appearance. The target shade and hand-feel are approved on a sample before bulk production." },
-  { id: "03", title: "Industrial Garment Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Garments are processed in industrial washing equipment using a recipe matched to the fabric, construction and approved finish." },
+  { id: "01", title: "Garment Production Floor", image: "/images/v2/facility-wide.jpg", detail: "A view of the factory floor and production equipment used across garment-washing operations." },
+  { id: "02", title: "Enzyme Washing", image: "/images/v2/services/enzyme-wash.jpg", detail: "Enzyme washing is used to refine the garment surface and hand-feel. The exact effect depends on the fabric and approved wash recipe." },
+  { id: "03", title: "Stone Washing", image: "/images/v2/services/stone-wash.jpg", detail: "Stone washing creates a worn, faded surface, especially on denim. The amount of abrasion is controlled to match the approved reference." },
   { id: "04", title: "Stone & Enzyme Wash", image: "/images/v2/services/stone-enzyme-wash.jpg", detail: "Stone abrasion and enzyme action can be combined to create a worn surface with a softer hand-feel. The balance depends on the approved reference." },
   { id: "05", title: "Bleach Wash", image: "/images/v2/services/bleach-wash.jpg", detail: "Controlled bleaching lightens garment colour toward the approved shade. Chemistry and processing conditions must suit the fabric and target result." },
-  { id: "06", title: "Critical Garment Washing", image: "/images/v2/services/critical-wash.jpg", detail: "Garments are processed with a wash recipe suited to their fabric, construction and care requirements. The approved standard guides the final shade and finish." },
+  { id: "06", title: "Critical Wash Processing", image: "/images/v2/services/critical-wash.jpg", detail: "A suitable wash recipe is selected for the garment's fabric and construction, with the target finish checked against the approved standard." },
   { id: "07", title: "Industrial Drying", image: "/images/v2/clients-hero.jpg", detail: "Industrial dryers remove remaining moisture from washed garments before inspection and any further finishing." },
   { id: "08", title: "Dyeing & Tinting", image: "/images/v2/services/deep-dye.jpg", detail: "Dye and tint processes adjust garment colour to the approved shade target. Colour samples are checked before the recipe is repeated at bulk scale." },
   { id: "09", title: "PP Spray Fading", image: "/images/v2/pp-spray.jpg", detail: "Potassium permanganate spray can create localized fading on selected garment areas. Application and neutralization must follow the approved process and safety controls." },
-  { id: "10", title: "Grinding & Scraping", image: "/images/v2/services/grinding.jpg", detail: "Controlled abrasion is applied to selected seams, hems and panels to create localized wear. Placement and intensity follow the approved reference." },
+  { id: "10", title: "Grinding Effects", image: "/images/v2/services/grinding.jpg", detail: "Grinding adds localized abrasion to selected garment areas. Placement and intensity should follow the approved design reference." },
   { id: "11", title: "Hand Brushing & Whisker Effects", image: "/images/v2/services/hand-brush.jpg", detail: "Hand finishing creates placed fading and directional marks. Whisker lines are positioned to match the approved design rather than applied uniformly." },
   { id: "12", title: "Quality Inspection", image: "/images/v2/qc-inspection.jpg", detail: "Finished garments are checked against the approved standard for shade, appearance, construction and measurements before release." },
   { id: "13", title: "Shade Swatches & Colour Approval", image: "/images/v2/swatches.jpg", detail: "Shade swatches provide a visual reference for colour approval. Compare the sample with the buyer's approved standard before releasing the bulk lot." },
-  { id: "14", title: "Finish Products", image: "/images/v2/wash-dye.jpg", detail: "Finished garments after washing and dyeing, presented as the final item in the 14-image Wash Library." },
+  { id: "14", title: "Hydro Extraction", image: "/images/v2/wash-dye.jpg", detail: "A worker loads wet garments into a hydro-extraction machine to remove excess water before drying. This photo shows a process step, not finished products." },
 ] as const;
 
 /** Full process menu from the Glassy company profile. */
