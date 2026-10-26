@@ -190,6 +190,14 @@ function Contact() {
               <ArrowRight size={15} className="text-primary" />
             </a>
             <a
+              href={company.secondaryPhoneHref}
+              className="m3-card state-layer flex items-center justify-between p-5 text-sm font-semibold"
+            >
+              {company.secondaryPhone}
+              <ArrowRight size={15} className="text-primary" />
+            </a>
+            <p className="text-sm text-muted-foreground">Contact person: {company.managingDirector}</p>
+            <a
               href={company.whatsapp}
               target="_blank"
               rel="noreferrer"
