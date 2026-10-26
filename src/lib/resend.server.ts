@@ -8,6 +8,29 @@
  */
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+const RESEND_TEST_SENDER = "Glassy Washing Plant <onboarding@resend.dev>";
+
+// Resend requires a verified sending domain. Public mailbox providers such as
+// Gmail cannot be used as the From domain; use Resend's test sender instead.
+const PUBLIC_MAILBOX_DOMAINS = new Set([
+  "gmail.com",
+  "googlemail.com",
+  "yahoo.com",
+  "yahoo.co.uk",
+  "outlook.com",
+  "hotmail.com",
+  "live.com",
+  "aol.com",
+  "icloud.com",
+  "proton.me",
+  "protonmail.com",
+]);
+
+function senderUsesPublicMailboxDomain(sender: string): boolean {
+  const address = sender.match(/<([^>]+)>/)?.[1] ?? sender;
+  const domain = address.trim().toLowerCase().split("@").pop();
+  return Boolean(domain && PUBLIC_MAILBOX_DOMAINS.has(domain));
+}
 
 export type SendEmailResult =
   | { sent: true; id: string | null }
@@ -33,10 +56,17 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
     return { sent: false, reason: "not_configured" };
   }
 
-  const from =
-    input.from ??
-    process.env["RESEND_FROM_EMAIL"] ??
-    "Glassy Washing Plant <onboarding@resend.dev>";
+  const configuredFrom =
+    input.from?.trim() || process.env["RESEND_FROM_EMAIL"]?.trim() || "";
+  const from = configuredFrom && !senderUsesPublicMailboxDomain(configuredFrom)
+    ? configuredFrom
+    : RESEND_TEST_SENDER;
+
+  if (configuredFrom && from === RESEND_TEST_SENDER && configuredFrom !== RESEND_TEST_SENDER) {
+    console.warn(
+      "[resend] RESEND_FROM_EMAIL uses a public mailbox domain; using onboarding@resend.dev until a verified domain sender is configured.",
+    );
+  }
 
   try {
     const response = await fetch(RESEND_ENDPOINT, {
