@@ -15,7 +15,7 @@ import { Footer, Header, PageTransition } from "@/components/site-shell";
 import { ScrollProgress } from "@/components/motion-primitives";
 import { AuthProvider } from "@/lib/auth-context";
 import { MotionPrefsProvider } from "@/lib/motion-prefs";
-import { organizationSchema } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL, organizationSchema } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Garment washing plant in Bangladesh providing garment washing, denim washing, dyeing, dry process and finishing services in Dhaka.",
       },
-      { property: "og:image", content: "https://glassy-washing-plant.vercel.app/og-image.jpg?v=2" },
+      { property: "og:image", content: `${SITE_URL}${DEFAULT_OG_IMAGE}?v=2` },
       { property: "og:image:width", content: "1536" },
       { property: "og:image:height", content: "1527" },
       { property: "og:image:alt", content: "Glassy Washing Plant logo" },
@@ -113,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Garment washing, dyeing and finishing built for quality at commercial scale." },
       {
         name: "twitter:image",
-        content: "https://glassy-washing-plant.vercel.app/og-image.jpg?v=2",
+        content: `${SITE_URL}${DEFAULT_OG_IMAGE}?v=2`,
       },
     ],
     links: [
