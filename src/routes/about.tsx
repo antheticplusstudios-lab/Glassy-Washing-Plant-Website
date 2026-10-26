@@ -28,9 +28,9 @@ export const Route = createFileRoute("/about")({
 });
 
 const facts: [string, string][] = [
-  ["11,500", "sq ft factory"],
-  ["120+", "workers"],
-  ["$2.5M+", "last-year volume"],
+  ["10,000+", "sq ft factory"],
+  ["100+", "workers"],
+  ["$7.5M+", "last-year volume"],
 ];
 
 const timeline: [string, string, string][] = [
