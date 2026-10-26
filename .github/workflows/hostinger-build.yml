@@ -1,0 +1,36 @@
+name: Verify Hostinger production build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build production server and prepare Hostinger entry points
+        run: npm run build
+
+      - name: Verify deployable files
+        run: |
+          test -s .output/server/index.mjs
+          test -s .output/index.mjs
+          test -s index.mjs
+          node --check .output/server/index.mjs
+          node --check .output/index.mjs
+          node --check index.mjs
