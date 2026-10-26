@@ -3,7 +3,6 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
-  useRouter,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -39,9 +38,8 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error }: { error: Error; reset: () => void }) {
   console.error(error);
-  const router = useRouter();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -54,24 +52,15 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
+            type="button"
+            onClick={() => window.location.reload()}
             className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
           >
             Try again
           </button>
           <button
             type="button"
-            onClick={() => {
-              void router.navigate({ to: "/", replace: true }).then(() => {
-                router.invalidate();
-                reset();
-              }).catch(() => {
-                window.location.assign("/");
-              });
-            }}
+            onClick={() => window.location.assign("/")}
             className="inline-flex items-center justify-center rounded-full border border-outline bg-background px-5 py-2.5 text-sm font-medium text-foreground"
           >
             Go home
