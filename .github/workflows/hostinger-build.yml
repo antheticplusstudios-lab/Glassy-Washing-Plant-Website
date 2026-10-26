@@ -30,12 +30,16 @@ jobs:
         run: |
           test -s .output/server/index.mjs
           test -s .output/index.mjs
+          test -s .output/.output/server/index.mjs
+          test -s .output/.output/index.mjs
           test -s index.mjs
           node --check .output/server/index.mjs
           node --check .output/index.mjs
+          node --check .output/.output/server/index.mjs
+          node --check .output/.output/index.mjs
           node --check index.mjs
 
-      - name: Smoke test production HTTP server
+      - name: Smoke test production HTTP server using Hostinger's current entry setting
         env:
           # Isolated test credentials: the homepage should still render if the
           # optional CMS endpoint is unavailable.
@@ -46,7 +50,7 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
           VITE_SITE_URL: https://glassywashing.com
         run: |
-          PORT=3000 HOST=127.0.0.1 node .output/index.mjs > /tmp/glassy-node-server.log 2>&1 &
+          PORT=3000 HOST=127.0.0.1 node .output/.output/server/index.mjs > /tmp/glassy-node-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           for attempt in $(seq 1 20); do
