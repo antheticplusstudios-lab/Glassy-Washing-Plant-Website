@@ -86,7 +86,7 @@ export const sendResendTestEmail = createServerFn({ method: "POST" })
 
     const { sendEmail } = await import("./resend.server");
     return sendEmail({
-      to: "antheticplusstudios@gmail.com",
+      to: process.env["RESEND_ACCOUNT_EMAIL"]?.trim() || "antheticplusstudios@gmail.com",
       from: "Glassy Washing Plant <onboarding@resend.dev>",
       subject: "Glassy Washing Plant — Resend test",
       text: "This is a Resend delivery test from the Glassy Washing Plant admin panel.",
