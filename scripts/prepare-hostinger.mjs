@@ -18,5 +18,5 @@ try {
 // Some hosting deployers resolve entry_file relative to the configured output
 // directory; others resolve it relative to the project root. Make index.mjs
 // available in both places to avoid the .output/.output path mismatch.
-await writeFile(outputEntry, 'import "./server/index.mjs";\\n', "utf8");
+await writeFile(outputEntry, 'import "./server/index.mjs";\n', "utf8");
 console.log("[hostinger] Entry points ready: index.mjs and .output/index.mjs");
