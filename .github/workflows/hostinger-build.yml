@@ -34,3 +34,19 @@ jobs:
           node --check .output/server/index.mjs
           node --check .output/index.mjs
           node --check index.mjs
+
+      - name: Smoke test production HTTP server
+        run: |
+          node index.mjs > /tmp/glassy-node-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent --show-error http://127.0.0.1:3000/ -o /tmp/glassy-home.html; then
+              break
+            fi
+            sleep 1
+          done
+          test -s /tmp/glassy-home.html
+          ! grep -q "This page didn't load" /tmp/glassy-home.html
+          grep -q "Glassy Washing Plant" /tmp/glassy-home.html
+          cat /tmp/glassy-node-server.log
