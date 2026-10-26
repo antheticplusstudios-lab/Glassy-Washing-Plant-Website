@@ -1,11 +1,15 @@
 export const company = {
   name: "Glassy Washing Plant",
-  phone: "01819195026",
+  managingDirector: "Md. Shah Alam",
+  phone: "+88 01819-195026",
   phoneHref: "tel:+8801819195026",
+  secondaryPhone: "+88 01774-868830",
+  secondaryPhoneHref: "tel:+8801774868830",
   whatsapp: "https://wa.me/8801819195026",
-  email: "Shahglassy26@gmail.com",
-  emailHref: "mailto:Shahglassy26@gmail.com",
-  address: "House 13, Wazuddin Rd, Vatara, Dhaka 1212, Bangladesh",
+  email: "shahglassy26@gmail.com",
+  emailHref: "mailto:shahglassy26@gmail.com",
+  address: "House #13, Wazzuddin Road, Vatara, Dhaka-1212, Bangladesh",
+  website: "https://www.glassywashing.com",
 };
 
 export const navItems = [
