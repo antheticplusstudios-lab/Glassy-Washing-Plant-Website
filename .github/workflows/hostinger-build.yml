@@ -46,7 +46,7 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
           VITE_SITE_URL: https://glassywashing.com
         run: |
-          PORT=3000 HOST=127.0.0.1 node index.mjs > /tmp/glassy-node-server.log 2>&1 &
+          PORT=3000 HOST=127.0.0.1 node .output/index.mjs > /tmp/glassy-node-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           for attempt in $(seq 1 20); do
