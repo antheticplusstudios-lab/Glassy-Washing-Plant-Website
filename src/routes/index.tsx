@@ -31,6 +31,9 @@ export const Route = createFileRoute("/")({
     links: seoLinks("/"),
   }),
   loader: () => getSiteContent(),
+  // Motion-heavy home sections render reliably in the browser on Hostinger; keep
+  // route data on the server but avoid a fragile first-request component SSR.
+  ssr: "data-only",
   // Site copy changes infrequently; keep it cached during client navigation
   // so returning home does not wait for Supabase again.
   staleTime: 60_000,
