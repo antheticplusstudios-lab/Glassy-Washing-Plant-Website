@@ -6,6 +6,13 @@ import { supabase } from './client'
 // the browser never attaches the bearer token to serverFn RPCs.
 export const attachSupabaseAuth = createMiddleware({ type: 'function' }).client(
   async ({ next }) => {
+    // This is client middleware; TanStack can evaluate it during SSR when
+    // resolving server functions from route loaders. Never initialise the
+    // browser Supabase client or read a session on the server.
+    if (typeof window === "undefined") {
+      return next({ headers: {} });
+    }
+
     const { data } = await supabase.auth.getSession()
     const token = data.session?.access_token
     return next({
