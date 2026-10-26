@@ -16,8 +16,8 @@ export default defineConfig({
       server: { entry: "server" },
     }),
     viteReact(),
-    // Explicit Vercel preset: deterministic Build Output API generation instead
-    // of relying on host-side preset detection.
-    nitro({ preset: "vercel" }),
+    // Build a standard Node.js server for Hostinger Node.js hosting.
+    // Output is written to .output/server/index.mjs and started with npm start.
+    nitro({ preset: "node-server" }),
   ],
 });
