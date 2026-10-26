@@ -160,7 +160,7 @@ function AdminOverview() {
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {email?.configured
             ? "Resend is connected. The test button sends directly to the current admin test inbox using Resend's testing sender."
-            : "Resend isn't configured yet. Add RESEND_API_KEY to the Vercel Production environment and redeploy."}
+            : "Resend isn't configured yet. Add RESEND_API_KEY to the Hostinger Node.js app environment variables and redeploy."}
         </p>
         {testEmail.data && (
           <pre className="mt-4 overflow-x-auto rounded-2xl border border-border bg-card p-4 text-xs whitespace-pre-wrap">
