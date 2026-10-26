@@ -37,8 +37,8 @@ jobs:
 
       - name: Smoke test production HTTP server
         env:
-          # Isolated test credentials: the app's Supabase client requires config
-          # even though the homepage gracefully falls back if the CMS query fails.
+          # Isolated test credentials: the homepage should still render if the
+          # optional CMS endpoint is unavailable.
           SUPABASE_URL: http://127.0.0.1:9
           SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
           SUPABASE_SERVICE_ROLE_KEY: sb_secret_ci_placeholder
@@ -49,19 +49,23 @@ jobs:
           PORT=3000 HOST=127.0.0.1 node index.mjs > /tmp/glassy-node-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
-          STATUS=""
           for attempt in $(seq 1 20); do
-            STATUS="$(curl --connect-timeout 2 --max-time 5 --silent --show-error --output /tmp/glassy-home.html --write-out "%{http_code}" http://127.0.0.1:3000/ || true)"
-            if [ "$STATUS" = "200" ]; then
+            if grep -q "Listening on:" /tmp/glassy-node-server.log; then
               break
             fi
-            # Retry startup connection failures, but don't spend the full loop
-            # retrying a definite HTTP 4xx/5xx response.
-            if [ -n "$STATUS" ] && [ "$STATUS" != "000" ]; then
-              break
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              echo "Node server exited before listening"
+              cat /tmp/glassy-node-server.log
+              exit 1
             fi
             sleep 1
           done
+          if ! grep -q "Listening on:" /tmp/glassy-node-server.log; then
+            echo "Node server did not listen within 20 seconds"
+            cat /tmp/glassy-node-server.log
+            exit 1
+          fi
+          STATUS="$(curl --connect-timeout 2 --max-time 10 --silent --show-error --output /tmp/glassy-home.html --write-out "%{http_code}" http://127.0.0.1:3000/ || true)"
           if [ "$STATUS" != "200" ]; then
             echo "Homepage returned HTTP ${STATUS:-no-response}"
             cat /tmp/glassy-node-server.log
