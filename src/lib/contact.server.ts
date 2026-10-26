@@ -66,7 +66,7 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
   // contact setting cannot silently route the message to the wrong inbox or
   // use an unverified sender. For testing, these fall back to the AntheticPlus
   // Resend account inbox and Resend's testing sender. Before client launch,
-  // set BRIEF_NOTIFY_EMAIL and RESEND_FROM_EMAIL in Vercel to the client's
+  // set BRIEF_NOTIFY_EMAIL and RESEND_FROM_EMAIL in Hostinger hPanel to the client's
   // production values.
   const notifyEmail =
     process.env["BRIEF_NOTIFY_EMAIL"]?.trim() ||
