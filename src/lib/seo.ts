@@ -1,7 +1,7 @@
 export const SITE_NAME = "Glassy Washing Plant";
 export const SITE_DESCRIPTION =
   "Garment washing plant in Bangladesh providing garment washing, denim washing, dyeing, dry process and finishing services in Dhaka.";
-export const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://glassy-washing-plant.vercel.app").replace(/\/$/, "");
+export const SITE_URL = (import.meta.env.VITE_SITE_URL ?? "https://glassywashing.com").replace(/\/$/, "");
 export const DEFAULT_OG_IMAGE = "/og-image.jpg";
 
 export function seoLinks(pathname: string) {
