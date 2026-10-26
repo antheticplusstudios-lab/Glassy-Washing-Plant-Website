@@ -40,12 +40,20 @@ jobs:
           PORT=3000 HOST=127.0.0.1 node index.mjs > /tmp/glassy-node-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          STATUS=""
           for attempt in $(seq 1 20); do
-            if curl --connect-timeout 2 --max-time 5 --fail --silent --show-error http://127.0.0.1:3000/ -o /tmp/glassy-home.html; then
+            STATUS="$(curl --connect-timeout 2 --max-time 5 --silent --show-error --output /tmp/glassy-home.html --write-out "%{http_code}" http://127.0.0.1:3000/ || true)"
+            if [ "$STATUS" = "200" ]; then
               break
             fi
             sleep 1
           done
+          if [ "$STATUS" != "200" ]; then
+            echo "Homepage returned HTTP ${STATUS:-no-response}"
+            cat /tmp/glassy-node-server.log
+            head -c 4000 /tmp/glassy-home.html || true
+            exit 1
+          fi
           test -s /tmp/glassy-home.html
           ! grep -q "This page didn't load" /tmp/glassy-home.html
           grep -q "Glassy Washing Plant" /tmp/glassy-home.html
