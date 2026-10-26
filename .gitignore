@@ -10,7 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-.output
+# Keep Nitro's generated .output bundle available to Hostinger's deployment packaging.
 .vinxi
 .tanstack/**
 .nitro
