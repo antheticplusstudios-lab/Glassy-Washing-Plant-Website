@@ -3,7 +3,7 @@ import { emailShell, escapeHtml, sendEmail } from "./resend.server";
 // Resend isn't on a verified domain yet, so sandbox mode will only deliver to
 // the current API key's own account inbox. RESEND_ACCOUNT_EMAIL should always
 // match whichever email that Resend account (RESEND_API_KEY) is signed up
-// under — update it in Vercel, not here, if you ever switch keys. Once a
+// under — update it in Hostinger hPanel, not here, if you ever switch keys. Once a
 // domain is verified at resend.com/domains, BRIEF_NOTIFY_EMAIL or the "Admin
 // notification inbox" content setting can point anywhere again.
 const ACCOUNT_OWNER_EMAIL =
