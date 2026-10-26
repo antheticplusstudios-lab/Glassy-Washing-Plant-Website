@@ -7,7 +7,7 @@ email). Developed by NexGrowth Solutions.
 ## Stack
 
 - [TanStack Start](https://tanstack.com/start) — full-stack React framework (SSR, file-based routing, server functions)
-- [Nitro](https://nitro.build) — universal server build, deploys to Vercel with zero extra config
+- [Nitro](https://nitro.build) — Node.js server output for Hostinger hosting
 - [Supabase](https://supabase.com) — Postgres, auth, row-level security
 - [Resend](https://resend.com) — transactional email for the contact form and admin replies
 - Tailwind CSS v4 + shadcn/ui components
@@ -15,7 +15,7 @@ email). Developed by NexGrowth Solutions.
 
 ## Local development
 
-Requires Node.js 20+.
+Requires Node.js 20.19+.
 
 ```sh
 git clone <this-repository-url>
@@ -35,6 +35,7 @@ Copy `.env.example` to `.env` and fill in:
 | `SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase → Project Settings → API (anon/publishable key) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API (service_role key — **server-only, never prefix with `VITE_`**) |
 | `RESEND_API_KEY` | Resend → API Keys |
+| `RESEND_ACCOUNT_EMAIL`, `BRIEF_NOTIFY_EMAIL`, `RESEND_FROM_EMAIL` | Email addresses configured in Resend |
 
 `VITE_`-prefixed variables are bundled into the browser. Everything else stays
 server-side only — never put a secret behind the `VITE_` prefix.
@@ -58,18 +59,20 @@ hardcoded email in `handle_new_user()` gets the `admin` role on sign-up. Change
 that email in the migration (or update the `user_roles` table directly) before
 applying it to a fresh project.
 
-## Deploying to Vercel
+## Deploying to Hostinger Node.js hosting
 
-This project builds with the [Nitro Vite plugin](https://vercel.com/docs/frameworks/full-stack/tanstack-start),
-which Vercel detects automatically — no custom build command or output
-directory needed. `vercel.json` pins the framework preset explicitly as a
-safety net.
+This project uses Nitro's `node-server` preset. The production build creates
+`.output/server/index.mjs`, which is started by the `npm start` script.
 
-1. Push this repository to GitHub.
-2. Import it at [vercel.com/new](https://vercel.com/new).
-3. Add the environment variables from the table above under **Project Settings
-   → Environment Variables** (Production, Preview, and Development).
-4. Deploy.
+1. In Hostinger hPanel, open **Websites → Add Website → Node.js app** (availability depends on your hosting plan).
+2. Connect this GitHub repository or upload the project files.
+3. Use Node.js **20.19+** (or a newer supported LTS version).
+4. Set the install command to `npm install` and build command to `npm run build`.
+5. Set the startup command to `npm start` (equivalent to `node .output/server/index.mjs`).
+6. Add the environment variables from `.env.example` in the Hostinger Node.js app settings. Do not upload a real `.env` file to a public repository. Keep `SUPABASE_SERVICE_ROLE_KEY` server-only; only the variables prefixed with `VITE_` may be exposed to the browser.
+7. Build/restart the application in hPanel and connect your domain.
+
+**Important:** This is a full-stack SSR application, not a static website. It needs Node.js hosting; uploading only a `dist` folder to ordinary shared hosting will not run server routes, authentication callbacks, or email functions. If your Hostinger plan does not offer Node.js applications, use a Node.js-capable VPS or hosting plan.
 
 ## Project structure
 
