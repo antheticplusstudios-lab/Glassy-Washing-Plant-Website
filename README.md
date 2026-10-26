@@ -42,7 +42,9 @@ server-side only — never put a secret behind the `VITE_` prefix.
 
 The service-role key is required for admin operations (sending replies to
 submissions, the contact form's own insert, CSV export, user management) —
-without it those features will fail.
+without it those features will fail. The Supabase project reference in
+`.env.example` and `supabase/config.toml` matches the production project currently
+configured for Hostinger; change both if the project is migrated.
 
 ## Database
 
@@ -62,15 +64,17 @@ applying it to a fresh project.
 ## Deploying to Hostinger Node.js hosting
 
 This project uses Nitro's `node-server` preset. The build creates
-`.output/server/index.mjs`; `scripts/prepare-hostinger.mjs` verifies that file and
-writes `.output/index.mjs` as a bootstrap. Configure Hostinger's Entry file as
-`.output/index.mjs` to match the path that Hostinger's build validator checks.
+`.output/server/index.mjs`. The post-build script also creates bootstrap files
+at the project root and `.output/index.mjs`, plus lightweight compatibility
+shims for Hostinger versions that resolve the entry path relative to the output
+directory. CI starts the server through the same output-relative path used by
+the current Hostinger setting.
 
 1. In Hostinger hPanel, open **Websites → Add Website → Node.js app** (availability depends on your hosting plan).
 2. Connect this GitHub repository or upload the project files.
 3. Select Node.js **22.x or 24.x** in Hostinger. Supabase's server client needs Node.js 22+ for the native WebSocket implementation.
 4. Set the install command to `npm install` and build command to `npm run build`.
-5. Set the output directory to `.output` and the entry file to `.output/index.mjs` (include the leading `.output/` and `.mjs` extension exactly). The build also produces `.output/server/index.mjs`, which the bootstrap imports. The startup script is `npm start`.
+5. Set the output directory to `.output`. You can keep the current Entry file value `.output/server/index.mjs`; the build now creates the output-relative compatibility shim as well. For a simpler path, `index.mjs` is also available at both project root and output root. The startup script in `package.json` is `npm start`.
 6. Add the environment variables from `.env.example` in the Hostinger Node.js app settings. Do not upload a real `.env` file to a public repository. Keep `SUPABASE_SERVICE_ROLE_KEY` server-only; only the variables prefixed with `VITE_` may be exposed to the browser.
 7. Build/restart the application in hPanel and connect your domain.
 
