@@ -36,6 +36,15 @@ jobs:
           node --check index.mjs
 
       - name: Smoke test production HTTP server
+        env:
+          # Isolated test credentials: the app's Supabase client requires config
+          # even though the homepage gracefully falls back if the CMS query fails.
+          SUPABASE_URL: https://olnagolomytenefturke.supabase.co
+          SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
+          SUPABASE_SERVICE_ROLE_KEY: sb_secret_ci_placeholder
+          VITE_SUPABASE_URL: https://olnagolomytenefturke.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
+          VITE_SITE_URL: https://glassywashing.com
         run: |
           PORT=3000 HOST=127.0.0.1 node index.mjs > /tmp/glassy-node-server.log 2>&1 &
           SERVER_PID=$!
