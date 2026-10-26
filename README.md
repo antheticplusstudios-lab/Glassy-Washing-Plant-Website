@@ -63,14 +63,14 @@ applying it to a fresh project.
 
 This project uses Nitro's `node-server` preset. The build creates
 `.output/server/index.mjs`; `scripts/prepare-hostinger.mjs` verifies that file and
-writes `.output/index.mjs` as a bootstrap. The root `index.mjs` is also a bootstrap,
-so Hostinger can resolve the entry file from either the project root or output directory.
+writes `.output/index.mjs` as a bootstrap. Configure Hostinger's Entry file as
+`.output/index.mjs` to match the path that Hostinger's build validator checks.
 
 1. In Hostinger hPanel, open **Websites → Add Website → Node.js app** (availability depends on your hosting plan).
 2. Connect this GitHub repository or upload the project files.
 3. Select Node.js **22.x or 24.x** in Hostinger. Supabase's server client needs Node.js 22+ for the native WebSocket implementation.
 4. Set the install command to `npm install` and build command to `npm run build`.
-5. Set the output directory to `.output` and the entry file to `index.mjs`. The build creates both a root-level `index.mjs` and `.output/index.mjs` to work with either entry-path resolution. The startup script is `npm start`.
+5. Set the output directory to `.output` and the entry file to `.output/index.mjs` (include the leading `.output/` and `.mjs` extension exactly). The build also produces `.output/server/index.mjs`, which the bootstrap imports. The startup script is `npm start`.
 6. Add the environment variables from `.env.example` in the Hostinger Node.js app settings. Do not upload a real `.env` file to a public repository. Keep `SUPABASE_SERVICE_ROLE_KEY` server-only; only the variables prefixed with `VITE_` may be exposed to the browser.
 7. Build/restart the application in hPanel and connect your domain.
 
