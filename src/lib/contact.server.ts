@@ -1,13 +1,14 @@
-import { emailShell, escapeHtml, sendEmail } from "./resend.server";
+import {
+  emailShell,
+  escapeHtml,
+  sendEmail,
+  type SendEmailResult,
+} from "./resend.server";
 
-// Resend isn't on a verified domain yet, so sandbox mode will only deliver to
-// the current API key's own account inbox. RESEND_ACCOUNT_EMAIL should always
-// match whichever email that Resend account (RESEND_API_KEY) is signed up
-// under — update it in Hostinger hPanel, not here, if you ever switch keys. Once a
-// domain is verified at resend.com/domains, BRIEF_NOTIFY_EMAIL or the "Admin
-// notification inbox" content setting can point anywhere again.
-const ACCOUNT_OWNER_EMAIL =
-  process.env["RESEND_ACCOUNT_EMAIL"]?.trim() || "antheticplusstudios@gmail.com";
+// In Resend sandbox mode, delivery is restricted to the account's own inbox.
+// Configure RESEND_ACCOUNT_EMAIL in the environment to identify that inbox;
+// do not silently send customer inquiries to a hard-coded developer address.
+const ACCOUNT_OWNER_EMAIL = process.env["RESEND_ACCOUNT_EMAIL"]?.trim();
 
 export type BriefRecord = {
   name: string;
@@ -49,7 +50,7 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
   }
 
   // Contact notification settings are optional. If the CMS is offline,
-  // continue with the server-side fallback inbox instead of aborting the form.
+  // continue with the server-side notification defaults.
   let settings: Record<string, string> = {};
   try {
     const { data: contact } = await supabaseAdmin
@@ -62,16 +63,13 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
     console.warn("[contact] CMS unavailable; using server-side notification defaults.");
   }
 
-  // Admin brief notifications are controlled server-side so a stale Supabase
-  // contact setting cannot silently route the message to the wrong inbox or
-  // use an unverified sender. For testing, these fall back to the AntheticPlus
-  // Resend account inbox and Resend's testing sender. Before client launch,
-  // set BRIEF_NOTIFY_EMAIL and RESEND_FROM_EMAIL in Hostinger hPanel to the client's
-  // production values.
+  // Prefer explicit server-side settings. The Resend account inbox is only a
+  // fallback; if neither address is set, record notification as not configured.
   const notifyEmail =
     process.env["BRIEF_NOTIFY_EMAIL"]?.trim() ||
     settings["notifyEmail"]?.trim() ||
-    ACCOUNT_OWNER_EMAIL;
+    ACCOUNT_OWNER_EMAIL ||
+    "";
   const from =
     process.env["RESEND_FROM_EMAIL"]?.trim() ||
     "Glassy Washing Plant <onboarding@resend.dev>";
@@ -102,15 +100,27 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
          brief.message,
        )}</p>`,
     ),
-    text: `${brief.name} <${brief.email}>\nBrand: ${brief.brand ?? "-"}\nNeeds: ${brief.service}\n\n${brief.message}`,
+    text: `${brief.name} <${brief.email}>\\nBrand: ${brief.brand ?? "-"}\\nNeeds: ${brief.service}\\n\\n${brief.message}`,
   };
 
-  let result = await sendEmail({ to: notifyEmail, ...emailPayload });
+  let result: SendEmailResult;
+  if (!notifyEmail) {
+    console.error(
+      "[contact] No notification recipient configured; set BRIEF_NOTIFY_EMAIL or RESEND_ACCOUNT_EMAIL.",
+    );
+    result = { sent: false, reason: "not_configured" };
+  } else {
+    result = await sendEmail({ to: notifyEmail, ...emailPayload });
+  }
 
   // Resend sandbox mode only delivers to the account owner's own inbox. If the
-  // configured notify address is anything else and that's why the send failed,
-  // retry against the account inbox so a brief never goes unnoticed.
-  if (!result.sent && result.reason === "failed" && notifyEmail.trim().toLowerCase() !== ACCOUNT_OWNER_EMAIL) {
+  // configured notify address fails and the account inbox is configured, retry there.
+  if (
+    !result.sent &&
+    result.reason === "failed" &&
+    ACCOUNT_OWNER_EMAIL &&
+    notifyEmail.trim().toLowerCase() !== ACCOUNT_OWNER_EMAIL.toLowerCase()
+  ) {
     result = await sendEmail({ to: ACCOUNT_OWNER_EMAIL, ...emailPayload });
   }
 
