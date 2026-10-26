@@ -66,7 +66,7 @@ This project uses Nitro's `node-server` preset. The production build creates
 
 1. In Hostinger hPanel, open **Websites → Add Website → Node.js app** (availability depends on your hosting plan).
 2. Connect this GitHub repository or upload the project files.
-3. Use Node.js **20.19+** (or a newer supported LTS version).
+3. Select Node.js **22.x or 24.x** in Hostinger. Supabase's server client needs Node.js 22+ for the native WebSocket implementation.
 4. Set the install command to `npm install` and build command to `npm run build`.
 5. Set the startup command to `npm start` (equivalent to `node .output/server/index.mjs`).
 6. Add the environment variables from `.env.example` in the Hostinger Node.js app settings. Do not upload a real `.env` file to a public repository. Keep `SUPABASE_SERVICE_ROLE_KEY` server-only; only the variables prefixed with `VITE_` may be exposed to the browser.
