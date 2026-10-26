@@ -493,6 +493,26 @@ function Contact() {
         </Reveal>
       </section>
 
+      {/* Google Business Profile QR */}
+      <section className="bg-background py-20 sm:py-24">
+        <div className="container-site">
+          <Reveal>
+            <div className="m3-card grid items-center gap-8 overflow-hidden p-6 sm:p-10 md:grid-cols-[1fr_auto]">
+              <div className="max-w-2xl">
+                <p className="eyebrow">Find us on Google</p>
+                <h2 className="mt-4 font-display text-[clamp(1.9rem,4vw,2.8rem)] leading-[1.02] font-extrabold">Scan to visit our business profile.</h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">Open Glassy Washing Plant on Google Maps to view our location and business information.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Glassy%20Washing%20Plant&query_place_id=ChIJgcRhm2nHVTcRLmm93KDhZ78" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90">Open Google Business Profile <ArrowRight size={16} /></a>
+              </div>
+              <a href="https://www.google.com/maps/search/?api=1&query=Glassy%20Washing%20Plant&query_place_id=ChIJgcRhm2nHVTcRLmm93KDhZ78" target="_blank" rel="noreferrer" aria-label="Open Glassy Washing Plant Google Business Profile" className="mx-auto block w-full max-w-[280px] rounded-2xl border border-border bg-white p-3 shadow-elev-2 transition-transform hover:scale-[1.02]">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=5000x5000&margin=4&color=082746&bgcolor=FFFFFF&ecc=H&data=https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3DGlassy%2520Washing%2520Plant%26query_place_id%3DChIJgcRhm2nHVTcRLmm93KDhZ78" alt="QR code to open Glassy Washing Plant on Google Maps" width="5000" height="5000" loading="lazy" decoding="async" className="h-auto w-full" />
+                <p className="mt-3 text-center text-xs font-semibold tracking-wide text-slate-800">SCAN TO FIND US</p>
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="bg-surface-1 py-24">
         <div className="container-site grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
