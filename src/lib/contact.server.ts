@@ -100,7 +100,7 @@ export async function storeAndNotifyBrief(brief: BriefRecord, userId: string | n
          brief.message,
        )}</p>`,
     ),
-    text: `${brief.name} <${brief.email}>\\nBrand: ${brief.brand ?? "-"}\\nNeeds: ${brief.service}\\n\\n${brief.message}`,
+    text: `${brief.name} <${brief.email}>\nBrand: ${brief.brand ?? "-"}\nNeeds: ${brief.service}\n\n${brief.message}`,
   };
 
   let result: SendEmailResult;
