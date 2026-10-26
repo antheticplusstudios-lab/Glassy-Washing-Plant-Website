@@ -62,12 +62,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a
-            href="/"
+          <button
+            type="button"
+            onClick={() => {
+              void router.navigate({ to: "/", replace: true }).then(() => {
+                router.invalidate();
+                reset();
+              }).catch(() => {
+                window.location.assign("/");
+              });
+            }}
             className="inline-flex items-center justify-center rounded-full border border-outline bg-background px-5 py-2.5 text-sm font-medium text-foreground"
           >
             Go home
-          </a>
+          </button>
         </div>
       </div>
     </div>
