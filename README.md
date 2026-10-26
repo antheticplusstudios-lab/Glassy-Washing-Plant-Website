@@ -15,7 +15,7 @@ email). Developed by NexGrowth Solutions.
 
 ## Local development
 
-Requires Node.js 20.19+.
+Requires Node.js 22 or newer (Node.js 22 or 24 in Hostinger).
 
 ```sh
 git clone <this-repository-url>
@@ -35,7 +35,7 @@ Copy `.env.example` to `.env` and fill in:
 | `SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase → Project Settings → API (anon/publishable key) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API (service_role key — **server-only, never prefix with `VITE_`**) |
 | `RESEND_API_KEY` | Resend → API Keys |
-| `RESEND_ACCOUNT_EMAIL`, `BRIEF_NOTIFY_EMAIL`, `RESEND_FROM_EMAIL` | Email addresses configured in Resend |
+| `RESEND_ACCOUNT_EMAIL`, `BRIEF_NOTIFY_EMAIL`, `RESEND_FROM_EMAIL` | Notification inbox and a Resend sender; production sender must use a verified domain |
 
 `VITE_`-prefixed variables are bundled into the browser. Everything else stays
 server-side only — never put a secret behind the `VITE_` prefix.
