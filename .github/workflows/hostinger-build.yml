@@ -55,6 +55,11 @@ jobs:
             if [ "$STATUS" = "200" ]; then
               break
             fi
+            # Retry startup connection failures, but don't spend the full loop
+            # retrying a definite HTTP 4xx/5xx response.
+            if [ -n "$STATUS" ] && [ "$STATUS" != "000" ]; then
+              break
+            fi
             sleep 1
           done
           if [ "$STATUS" != "200" ]; then
